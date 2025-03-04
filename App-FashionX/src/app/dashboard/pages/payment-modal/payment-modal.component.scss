@@ -1,0 +1,405 @@
+/* payment-modal.component.scss */
+$primary-color: #3f51b5;
+$secondary-color: #f5f5f5;
+$border-color: #e0e0e0;
+$text-color: #333;
+$error-color: #f44336;
+$success-color: #4caf50;
+$hover-color: #e8eaf6;
+$box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.payment-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  animation: modal-fade-in 0.3s ease;
+
+  @keyframes modal-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.payment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid $border-color;
+  background-color: $primary-color;
+  color: white;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+.payment-modal-progress {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: $secondary-color;
+
+  .progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid $border-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      color: $text-color;
+      transition: all 0.3s;
+      margin-bottom: 8px;
+    }
+
+    .step-label {
+      font-size: 0.9rem;
+      color: $text-color;
+      font-weight: 500;
+    }
+
+    &.active {
+      .step-number {
+        background-color: $primary-color;
+        border-color: $primary-color;
+        color: white;
+      }
+
+      .step-label {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .progress-line {
+    height: 2px;
+    background-color: $border-color;
+    flex-grow: 1;
+    margin: 0 10px;
+    transform: translateY(-16px);
+
+    &.active {
+      background-color: $primary-color;
+    }
+  }
+}
+
+.payment-modal-content {
+  padding: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: $text-color;
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: $text-color;
+    font-size: 1.1rem;
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: $text-color;
+    font-size: 0.9rem;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 1px $primary-color;
+    }
+
+    &::placeholder {
+      color: #aaa;
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+
+  .form-group {
+    flex: 1;
+  }
+}
+
+.error-message {
+  color: $error-color;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  display: block;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+
+  .payment-method {
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:hover {
+      background-color: $hover-color;
+    }
+
+    &.selected {
+      border-color: $primary-color;
+      background-color: $hover-color;
+      box-shadow: 0 0 0 1px $primary-color;
+    }
+
+    .payment-method-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: $primary-color;
+    }
+
+    .payment-method-name {
+      font-size: 0.9rem;
+      text-align: center;
+      font-weight: 500;
+    }
+  }
+}
+
+.card-details {
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 15px;
+  background-color: $secondary-color;
+  margin-bottom: 20px;
+}
+
+.order-summary {
+  margin-top: 20px;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 15px;
+
+  .summary-items {
+    margin-bottom: 15px;
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .item-name {
+        font-size: 0.9rem;
+      }
+
+      .item-price {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .summary-total {
+    border-top: 1px solid $border-color;
+    padding-top: 10px;
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+
+      .summary-label {
+        color: $text-color;
+      }
+
+      .summary-value {
+        font-weight: 500;
+      }
+
+      &.total {
+        margin-top: 10px;
+        border-top: 1px solid $border-color;
+        padding-top: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.payment-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid $border-color;
+  background-color: $secondary-color;
+}
+
+.button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.button-primary {
+    background-color: $primary-color;
+    color: white;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+    }
+
+    &:disabled {
+      background-color: lighten($primary-color, 20%);
+      cursor: not-allowed;
+    }
+  }
+
+  &.button-secondary {
+    background-color: white;
+    border: 1px solid $border-color;
+    color: $text-color;
+
+    &:hover {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s infinite linear;
+  margin-right: 10px;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .payment-modal-progress {
+    padding: 15px;
+
+    .step-label {
+      font-size: 0.8rem;
+    }
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .payment-methods {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

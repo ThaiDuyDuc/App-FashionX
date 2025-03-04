@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="header">
+    <h1>Quản lý Size</h1>
+    <button class="btn btn-primary" (click)="openAddModal()">
+      <i class="fas fa-plus"></i>
+      Thêm
+    </button>
+  </div>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Tìm kiếm theo tên size..."
+    />
+    <i class="fas fa-search"></i>
+  </div>
+
+  <!-- Modal Add/Edit Size -->
+  <div *ngIf="showModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{ isEditing ? "Chỉnh sửa" : "Thêm mới" }} Size</h2>
+        <button class="btn-icon" (click)="closeModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="sizeForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="name">Tên Size</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Nhập tên size"
+            />
+            <div
+              class="error-message"
+              *ngIf="sizeForm.get('name')?.errors?.['required'] && sizeForm.get('name')?.touched"
+            >
+              Vui lòng nhập tên size
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Trạng thái</label>
+            <div class="toggle-switch">
+              <input type="checkbox" id="status" formControlName="status" />
+              <label for="status" class="toggle-label"></label>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-cancel" (click)="closeModal()">
+              Hủy
+            </button>
+            <button
+              type="submit"
+              class="btn-submit"
+              [disabled]="!sizeForm.valid || isSubmitting"
+            >
+              {{ isSubmitting ? "Đang xử lý..." : "Lưu" }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên Size</th>
+          <th>Trạng thái</th>
+          <th>Người tạo</th>
+          <th>Ngày tạo</th>
+          <th>Người cập nhật</th>
+          <th>Ngày cập nhật</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let size of sizes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ size.name }}</td>
+          <td>
+            <span
+              [class]="'status-badge ' + (size.status ? 'active' : 'inactive')"
+            >
+              {{ size.status ? "Hoạt động" : "Không hoạt động" }}
+            </span>
+          </td>
+          <td>{{ size.createdBy }}</td>
+          <td>{{ size.createdAt | date : "dd/MM/yyyy HH:mm" }}</td>
+          <td>{{ size.updatedBy }}</td>
+          <td>{{ size.updatedAt | date : "dd/MM/yyyy HH:mm" }}</td>
+          <td class="actions">
+            <button class="btn-icon" (click)="editSize(size)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-icon delete" (click)="deleteSize(size)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

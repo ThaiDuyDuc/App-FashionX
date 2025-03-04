@@ -1,0 +1,80 @@
+.promotion-section {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.promotion-search {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.promotion-search input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.promotion-search button {
+  padding: 0.5rem 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.promotion-item {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.promotion-item:hover {
+  background-color: #f5f5f5;
+}
+
+.promotion-item.selected {
+  border-color: #4CAF50;
+  background-color: #e8f5e9;
+}
+
+.promo-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.promo-code {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.selected-promotion {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #e8f5e9;
+  border-radius: 4px;
+}
+
+.selected-promo-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  color: #d32f2f;
+}

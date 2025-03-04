@@ -1,0 +1,7 @@
+<div class="layout-container">
+  <app-navbar (sidebarToggle)="toggleSidebar()"></app-navbar>
+  <app-sidebar [ngClass]="{ hidden: !isSidebarVisible }"></app-sidebar>
+  <div class="main-content" [ngClass]="{ 'full-width': !isSidebarVisible }">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+<!-- employee-management.component.html -->
+<div class="employee-management">
+  <div class="header-section">
+    <div class="title">
+      <h1>Quản lý nhân viên</h1>
+      <p>Tổng số nhân viên: {{ employees.length }}</p>
+    </div>
+    <button class="add-button" (click)="openAddEmployeeForm()">
+      <i class="fas fa-plus"></i>
+      Thêm nhân viên mới
+    </button>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="sidebar">
+      <div class="controls">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Tìm kiếm nhân viên..."
+            class="search-input"
+          />
+        </div>
+
+        <div class="filter-section">
+          <h3>Bộ phận</h3>
+          <select [(ngModel)]="filterDepartment">
+            <option value="all">Tất cả bộ phận</option>
+            @for(dept of departments; track dept) {
+            <option [value]="dept">{{ dept }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="sort-section">
+          <h3>Sắp xếp theo</h3>
+          <select [(ngModel)]="sortBy">
+            <option value="name">Tên</option>
+            <option value="sales">Doanh số</option>
+            <option value="date">Ngày vào làm</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="employee-list">
+        @for(employee of filteredEmployees; track employee.id) {
+        <div
+          class="employee-card"
+          [class.active]="selectedEmployee?.id === employee.id"
+          (click)="selectEmployee(employee)"
+        >
+          <div class="employee-image">
+            <img [src]="employee.avatar" [alt]="employee.name" />
+            <span class="status-badge" [class]="employee.status"></span>
+          </div>
+          <div class="employee-info">
+            <h3>{{ employee.name }}</h3>
+            <p class="position">{{ employee.position }}</p>
+            <p class="department">{{ employee.department }}</p>
+          </div>
+          <div
+            class="performance-indicator"
+            [class]="getPerformanceClass(employee)"
+          >
+            {{ calculatePerformance(employee) }}
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    @if(selectedEmployee) {
+    <div class="main-content">
+      <div class="profile-header">
+        <div class="profile-image">
+          <img [src]="selectedEmployee.avatar" [alt]="selectedEmployee.name" />
+          <span class="status-badge" [class]="selectedEmployee.status"></span>
+        </div>
+        <div class="profile-info">
+          <h2>{{ selectedEmployee.name }}</h2>
+          <p class="position">{{ selectedEmployee.position }}</p>
+          <p class="department">{{ selectedEmployee.department }}</p>
+        </div>
+        <div class="performance-summary">
+          <div class="stat-card">
+            <span class="label">Doanh số tháng</span>
+            <span class="value">{{
+              formatCurrency(selectedEmployee.sales)
+            }}</span>
+          </div>
+          <div class="stat-card">
+            <span class="label">Hiệu suất</span>
+            <span class="value" [class]="getPerformanceClass(selectedEmployee)">
+              {{ calculatePerformance(selectedEmployee) }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="contact-info">
+          <h3>Thông tin liên hệ</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>{{ selectedEmployee.email }}</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>{{ selectedEmployee.phone }}</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-calendar"></i>
+              <span
+                >Ngày vào:
+                {{ selectedEmployee.startDate | date : "dd/MM/yyyy" }}</span
+              >
+            </div>
+            <div class="info-item">
+              <i class="fas fa-money-bill"></i>
+              <span>Lương: {{ formatCurrency(selectedEmployee.salary) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h3>Kỹ năng & Chuyên môn</h3>
+          <div class="skills-list">
+            @for(skill of selectedEmployee.skills; track skill) {
+            <span class="skill-tag">{{ skill }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  <!-- </div> -->
+</div>

@@ -1,0 +1,54 @@
+<!-- customer-select.component.html -->
+<div class="customer-select-container">
+  <div class="selected-customer" (click)="toggleDropdown()">
+    <div *ngIf="selectedCustomer; else noCustomer">
+      <div class="customer-info">
+        <span class="customer-name">{{ selectedCustomer.fullName }}</span>
+        <span class="customer-phone">{{ selectedCustomer.phoneNumber }}</span>
+      </div>
+      <span class="dropdown-arrow">▼</span>
+    </div>
+    <ng-template #noCustomer>
+      <div class="placeholder">
+        <span>Chọn khách hàng</span>
+        <span class="dropdown-arrow">▼</span>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="dropdown-panel" *ngIf="showDropdown">
+    <div class="search-box">
+      <input
+        type="text"
+        [value]="searchTerm"
+        (input)="onSearch($event)"
+        placeholder="Tìm kiếm khách hàng..."
+      />
+    </div>
+
+    <div class="customers-list" *ngIf="!isLoading; else loading">
+      <div class="new-customer-button" (click)="createNewCustomer()">
+        <i class="fas fa-plus"></i>
+        <span>Thêm khách hàng mới</span>
+      </div>
+
+      <div
+        class="customer-item"
+        *ngFor="let customer of customers"
+        (click)="onCustomerSelect(customer)"
+        [class.selected]="selectedCustomer?.id === customer.id"
+      >
+        <div class="customer-details">
+          <span class="name">{{ customer.fullName }}</span>
+          <span class="phone">{{ customer.phoneNumber }}</span>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <span>Đang tải...</span>
+      </div>
+    </ng-template>
+  </div>
+</div>

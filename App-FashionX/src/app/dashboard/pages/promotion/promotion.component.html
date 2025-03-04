@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="header">
+    <h1>Quản lý Khuyến mãi</h1>
+    <!-- <button class="btn-primary" (click)="showModal = true">
+      <i class="fas fa-plus"></i> Thêm khuyến mãi
+    </button> -->
+    <button
+      class="btn btn-primary"
+      [routerLink]="['/dashboard-fashionX/addPromotion']"
+    >
+      <i class="fas fa-plus"></i>
+      Thêm
+    </button>
+  </div>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Tìm kiếm theo mã khuyến mãi..."
+    />
+    <i class="fas fa-search"></i>
+  </div>
+
+  <!-- Modal Hiển thị AddPromotionComponent -->
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Ảnh</th>
+          <th>Mã KM</th>
+          <th>Giá trị</th>
+          <th>Ngày bắt đầu</th>
+          <th>Ngày kết thúc</th>
+          <th>Trạng thái</th>
+          <th>Người tạo</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let promotion of promotions">
+          <td>
+            <img
+              [src]="promotion.url_image"
+              [alt]="promotion.code"
+              class="promo-image"
+            />
+          </td>
+          <td>{{ promotion.code }}</td>
+          <td>{{ promotion.value }}%</td>
+          <td>{{ promotion.start_date }}</td>
+          <td>{{ promotion.end_date }}</td>
+          <td>
+            <span
+              [class]="
+                'status-badge ' +
+                promotion.status.toLowerCase().replace(' ', '-')
+              "
+            >
+              {{ promotion.status }}
+            </span>
+          </td>
+          <td>{{ promotion.created_by }}</td>
+          <td class="actions">
+            <button class="btn-icon" (click)="manageProducts(promotion)">
+              <i class="fas fa-box"></i>
+            </button>
+            <button class="btn-icon">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-icon delete">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

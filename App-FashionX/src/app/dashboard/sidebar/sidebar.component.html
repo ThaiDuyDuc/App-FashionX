@@ -1,0 +1,122 @@
+<!-- sidebar.component.html -->
+<nav class="nav-sidebar">
+  <ul class="ul-item">
+    <li
+      [routerLink]="['/dashboard-fashionX/promotion']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-tag"></i>
+        Khuyến mãi
+      </a>
+    </li>
+
+    <li
+      [routerLink]="['/dashboard-fashionX/statistical']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-chart-simple"></i>
+        Thống kê
+      </a>
+    </li>
+
+    <li
+      class="nav-item dropdown"
+      (click)="toggleDropdown()"
+      [class.open]="isDropdownOpen"
+    >
+      <a>
+        <i class="fa-solid fa-box"></i>
+        Sản phẩm
+        <i class="fa-sharp fa-solid fa-caret-down"></i>
+      </a>
+      <div class="submenu" [class.show]="isDropdownOpen">
+        <ul>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/dashboard-fashionX/material']">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              Chất liệu 1
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/dashboard-fashionX/size']">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              Size
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/dashboard-fashionX/style']">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+              Style
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+    <li
+      [routerLink]="['/dashboard-fashionX/customer']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-users"></i>
+        Khách hàng
+      </a>
+    </li>
+
+    <li
+      [routerLink]="['/dashboard-fashionX/employee']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-user-tie"></i>
+        Nhân viên
+      </a>
+    </li>
+
+    <li
+      [routerLink]="['/dashboard-fashionX/shipping-carrier']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-truck-fast"></i>
+        Vận chuyển
+      </a>
+    </li>
+
+    <li [routerLink]="['/dashboard-fashionX/pos']" routerLinkActive="active">
+      <a>
+        <i class="fa-solid fa-circle-dollar-to-slot"></i>
+        Bán hàng tại quầy
+      </a>
+    </li>
+
+    <li
+      [routerLink]="['/dashboard-fashionX/order-detail']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-truck-fast"></i>
+        Đơn hàng chi tiết
+      </a>
+    </li>
+
+    <li [routerLink]="['/dashboard-fashionX/bill']" routerLinkActive="active">
+      <a>
+        <i class="fa-solid fa-file-invoice"></i>
+        Hóa đơn
+      </a>
+    </li>
+
+    <li
+      [routerLink]="['/dashboard-fashionX/direct-sales']"
+      routerLinkActive="active"
+    >
+      <a>
+        <i class="fa-solid fa-warehouse"></i>
+        Sell
+      </a>
+    </li>
+  </ul>
+</nav>

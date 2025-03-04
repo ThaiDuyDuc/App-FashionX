@@ -1,0 +1,8 @@
+<div class="alert" [ngClass]="alertClass" *ngIf="isVisible">
+  <button class="close-button" (click)="close()">x</button>
+  <strong>{{ title }}</strong>
+  <p>{{ message }}</p>
+  <div class="progress-bar">
+    <div class="progress" [style.width.%]="progress"></div>
+  </div>
+</div>

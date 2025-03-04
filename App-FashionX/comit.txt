@@ -1,0 +1,151 @@
+icon
+   npm install
+
+   các trang trong dashboard
+
+1. Trang Tổng Quan (Dashboard)
+Hiển thị các thông tin tổng quan về doanh nghiệp:
+
+Doanh thu theo ngày/tuần/tháng.
+
+Số lượng đơn hàng mới.
+
+Tỷ lệ chuyển đổi (conversion rate).
+
+Số lượng sản phẩm tồn kho.
+
+Biểu đồ doanh thu, đơn hàng theo thời gian.
+
+2. Trang Quản Lý Sản Phẩm
+Danh sách sản phẩm (áo) với các thông tin:
+
+Tên sản phẩm, mô tả, giá bán.
+
+Hình ảnh sản phẩm.
+
+Số lượng tồn kho.
+
+Danh mục sản phẩm (ví dụ: áo thun, áo khoác, áo sơ mi).
+
+Chức năng thêm, sửa, xóa sản phẩm.
+
+3. Trang Quản Lý Đơn Hàng
+Danh sách đơn hàng với trạng thái (đang xử lý, đã giao, đã hủy).
+
+Chi tiết đơn hàng:
+
+Thông tin khách hàng.
+
+Sản phẩm trong đơn hàng.
+
+Tổng giá trị đơn hàng.
+
+Chức năng cập nhật trạng thái đơn hàng.
+
+4. Trang Quản Lý Khách Hàng
+Danh sách khách hàng với thông tin:
+
+Tên, email, số điện thoại.
+
+Lịch sử mua hàng.
+
+Tổng chi tiêu.
+
+Phân loại khách hàng (ví dụ: khách hàng thân thiết).
+
+5. Trang Quản Lý Kho Hàng
+Theo dõi số lượng tồn kho của từng sản phẩm.
+
+Cảnh báo khi sản phẩm sắp hết hàng.
+
+Lịch sử nhập/xuất kho.
+
+6. Trang Quản Lý Doanh Thu
+Báo cáo doanh thu theo ngày/tuần/tháng/năm.
+
+Phân tích doanh thu theo sản phẩm, danh mục.
+
+Biểu đồ so sánh doanh thu giữa các thời kỳ.
+
+7. Trang Quản Lý Khuyến Mãi
+Danh sách các chương trình khuyến mãi:
+
+Mã giảm giá.
+
+Chương trình giảm giá theo sản phẩm.
+
+Thống kê hiệu quả của từng chương trình khuyến mãi.
+
+8. Trang Quản Lý Đánh Giá & Phản Hồi
+Hiển thị đánh giá của khách hàng về sản phẩm.
+
+Quản lý phản hồi và hỗ trợ khách hàng.
+
+9. Trang Quản Lý Nhân Viên (nếu có)
+Danh sách nhân viên và vai trò (quản lý, nhân viên bán hàng, v.v.).
+
+Phân quyền truy cập vào các tính năng của dashboard.
+
+10. Trang Cài Đặt
+Cài đặt thông tin cửa hàng (tên, địa chỉ, logo).
+
+Cài đặt phương thức thanh toán (ví dụ: COD, chuyển khoản).
+
+Cài đặt vận chuyển (phí ship, khu vực giao hàng).
+
+Gợi ý thêm:
+Tích hợp công cụ phân tích: Google Analytics, Facebook Pixel để theo dõi hiệu quả marketing.
+
+Tính năng thông báo: Hiển thị thông báo đơn hàng mới, sản phẩm sắp hết hàng.
+
+Tính năng xuất báo cáo: Xuất file Excel/PDF cho các báo cáo doanh thu, đơn hàng.
+
+
+///////////////////////////
+Trang Bán Tại Quầy (POS)
+Trang này sẽ giúp nhân viên bán hàng xử lý giao dịch trực tiếp tại quầy một cách nhanh chóng và hiệu quả.
+
+1. Giao Diện Chính
+Thanh tìm kiếm sản phẩm: Nhập tên sản phẩm hoặc quét mã vạch để thêm sản phẩm vào hóa đơn.
+
+Danh sách sản phẩm: Hiển thị sản phẩm với hình ảnh, tên, giá và số lượng tồn kho.
+
+Giỏ hàng tạm thời: Hiển thị các sản phẩm đã chọn, số lượng, giá và tổng tiền.
+
+2. Tính Năng Chính
+Thêm/Xóa sản phẩm: Nhân viên có thể thêm hoặc xóa sản phẩm khỏi giỏ hàng.
+
+Chỉnh sửa số lượng: Thay đổi số lượng sản phẩm trong giỏ hàng.
+
+Áp dụng khuyến mãi: Nhập mã giảm giá hoặc chọn chương trình khuyến mãi tự động.
+
+Tính tổng tiền: Tự động tính tổng tiền sau khi áp dụng khuyến mãi, thuế (nếu có).
+
+Thanh toán:
+
+Chọn phương thức thanh toán (tiền mặt, thẻ, chuyển khoản).
+
+Nhập số tiền khách đưa và tính tiền thừa (nếu thanh toán bằng tiền mặt).
+
+In hóa đơn: Tự động in hóa đơn sau khi thanh toán thành công.
+
+3. Quản Lý Đơn Hàng Tại Quầy
+Lưu đơn hàng: Lưu thông tin đơn hàng vào hệ thống để theo dõi doanh thu và tồn kho.
+
+Xem lịch sử đơn hàng: Xem lại các đơn hàng đã bán tại quầy trong ngày.
+
+Hủy đơn hàng: Hủy đơn hàng nếu khách hàng không mua nữa.
+
+4. Đồng Bộ Dữ Liệu
+Cập nhật tồn kho: Khi bán hàng tại quầy, số lượng tồn kho sẽ tự động cập nhật trên hệ thống.
+
+Đồng bộ doanh thu: Doanh thu từ bán hàng tại quầy sẽ được cộng vào tổng doanh thu trên dashboard.
+
+5. Tính Năng Nâng Cao (Nếu Cần)
+Quản lý ca làm việc: Theo dõi ca làm việc của nhân viên và doanh thu từng ca.
+
+Phân quyền nhân viên: Giới hạn quyền truy cập vào POS cho nhân viên bán hàng.
+
+Tích hợp máy quét mã vạch: Để quét sản phẩm nhanh chóng.
+
+Tích hợp máy in hóa đơn: In hóa đơn tự động sau khi thanh toán.

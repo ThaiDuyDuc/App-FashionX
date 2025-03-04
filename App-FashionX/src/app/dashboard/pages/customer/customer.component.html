@@ -1,0 +1,239 @@
+<div class="customer-page">
+  <!-- Header Section -->
+  <header class="header">
+    <div class="header-content">
+      <h1>Quản lý Khách hàng</h1>
+      <div class="header-actions">
+        <button class="btn btn-outline" (click)="importCustomers()">
+          <i class="fas fa-file-import"></i>
+          Nhập
+        </button>
+        <button class="btn btn-outline" (click)="exportCustomers()">
+          <i class="fas fa-file-export"></i>
+          Xuất
+        </button>
+        <button class="btn btn-primary" (click)="addCustomer()">
+          <i class="fas fa-plus"></i>
+          Thêm khách hàng
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard">
+    <div class="dashboard-header">
+      <h2>Tổng quan</h2>
+      <select [(ngModel)]="selectedTimeRange" class="select-time">
+        <option *ngFor="let range of timeRanges" [value]="range.value">
+          {{ range.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card primary">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Tổng khách hàng</p>
+          <h3 class="stat-value">
+            {{ dashboardStats.totalCustomers | number }}
+          </h3>
+          <p class="stat-change positive">
+            <i class="fas fa-arrow-up"></i>
+            12.5% so với tháng trước
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-card success">
+        <div class="stat-icon">
+          <i class="fas fa-user-check"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Khách hàng hoạt động</p>
+          <h3 class="stat-value">
+            {{ dashboardStats.activeCustomers | number }}
+          </h3>
+          <p class="stat-change positive">
+            <i class="fas fa-arrow-up"></i>
+            8.3% so với tháng trước
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-card warning">
+        <div class="stat-icon">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Khách hàng mới</p>
+          <h3 class="stat-value">{{ dashboardStats.newCustomers | number }}</h3>
+          <p class="stat-change negative">
+            <i class="fas fa-arrow-down"></i>
+            3.2% so với tháng trước
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-card info">
+        <div class="stat-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="stat-content">
+          <p class="stat-label">Tỷ lệ giữ chân</p>
+          <h3 class="stat-value">
+            {{ dashboardStats.customerRetentionRate }}%
+          </h3>
+          <p class="stat-change positive">
+            <i class="fas fa-arrow-up"></i>
+            5.7% so với tháng trước
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Spenders Chart -->
+    <div class="dashboard-charts">
+      <div class="chart-card">
+        <h3>Top khách hàng chi tiêu</h3>
+        <div class="top-spenders">
+          <div
+            *ngFor="let spender of dashboardStats.topSpenders"
+            class="spender-item"
+          >
+            <img
+              [src]="
+                'https://hoanghamobile.com/tin-tuc/wp-content/webp-express/webp-images/uploads/2024/04/anh-jisoo-63.jpg.webp'
+              "
+              alt="Avatar"
+              class="spender-avatar"
+            />
+            <div class="spender-info">
+              <p class="spender-name">{{ spender.name }}</p>
+              <p class="spender-amount">
+                {{ spender.amount | currency : "VND" : "symbol" : "1.0-0" }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer List Section -->
+  <section class="customer-list">
+    <div class="list-header">
+      <h2>Danh sách khách hàng</h2>
+      <div class="list-actions">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            placeholder="Tìm kiếm khách hàng..."
+            [(ngModel)]="searchTerm"
+          />
+        </div>
+        <div class="filters">
+          <select [(ngModel)]="selectedStatus" class="select-filter">
+            <option value="all">Tất cả trạng thái</option>
+            <option value="Đang hoạt động">Đang hoạt động</option>
+            <option value="Không hoạt động">Không hoạt động</option>
+          </select>
+          <select [(ngModel)]="selectedMembership" class="select-filter">
+            <option value="all">Tất cả hạng thành viên</option>
+            <option *ngFor="let level of membershipLevels" [value]="level">
+              {{ level }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" class="select-all" />
+            </th>
+            <th (click)="sortCustomers('name')" class="sortable">
+              Khách hàng
+              <i class="fas fa-sort"></i>
+            </th>
+            <th (click)="sortCustomers('email')" class="sortable">
+              Email
+              <i class="fas fa-sort"></i>
+            </th>
+            <th>Số điện thoại</th>
+            <th>Hạng thành viên</th>
+            <th>Trạng thái</th>
+            <th (click)="sortCustomers('lastPurchase')" class="sortable">
+              Lần mua cuối
+              <i class="fas fa-sort"></i>
+            </th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of getPaginatedCustomers()">
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td class="customer-info">
+              <img
+                [src]="customer.avatar"
+                alt="Avatar"
+                class="customer-avatar"
+              />
+              <div>
+                <p class="customer-name">{{ customer.name }}</p>
+                <p class="customer-id">#{{ customer.id }}</p>
+              </div>
+            </td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>
+              <span
+                class="membership-badge"
+                [class]="customer.membershipLevel.toLowerCase()"
+              >
+                {{ customer.membershipLevel }}
+              </span>
+            </td>
+            <td>
+              <span
+                class="status-badge"
+                [class.active]="customer.status === 'Đang hoạt động'"
+              >
+                {{ customer.status }}
+              </span>
+            </td>
+            <td>
+              {{ customer.lastPurchase | date : "dd/MM/yyyy" }}
+              <small class="purchase-amount">2.500.000đ</small>
+            </td>
+            <td class="actions">
+              <button
+                class="btn-icon"
+                (click)="showCustomerDetails(customer)"
+                title="Chi tiết"
+              >
+                <i class="fas fa-eye"></i>
+              </button>
+              <button
+                class="btn-icon"
+                (click)="editCustomer(customer)"
+                title="Chỉnh sửa"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="header">
+    <h1>Quản lý Style</h1>
+    <button class="btn btn-primary" (click)="openAddModal()">
+      <i class="fas fa-plus"></i> Thêm
+    </button>
+  </div>
+
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Tìm kiếm theo tên style..."
+    />
+    <i class="fas fa-search"></i>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên Style</th>
+          <th>Trạng thái</th>
+          <th>Người tạo</th>
+          <th>Ngày tạo</th>
+          <th>Người cập nhật</th>
+          <th>Ngày cập nhật</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let style of styles; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ style.name }}</td>
+          <td>
+            <span
+              [class]="'status-badge ' + (style.status ? 'active' : 'inactive')"
+            >
+              {{ style.status ? "Hoạt động" : "Không hoạt động" }}
+            </span>
+          </td>
+          <td>{{ style.createdBy }}</td>
+          <td>{{ style.createdAt | date : "dd/MM/yyyy HH:mm" }}</td>
+          <td>{{ style.updatedBy }}</td>
+          <td>{{ style.updatedAt | date : "dd/MM/yyyy HH:mm" }}</td>
+
+          <td class="actions">
+            <button class="btn-icon" (click)="editStyle(style)">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="btn-icon delete" (click)="deleteStyle(style)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Gọi AddStyleComponent ở đây -->
+<!-- Modal content -->
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{{ isEditing ? "Chỉnh sửa" : "Thêm mới" }} Style</h2>
+      <button class="btn-icon" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="styleForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Tên Style</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Nhập tên style"
+          />
+          <div
+            class="error-message"
+            *ngIf="styleForm.get('name')?.errors?.['required'] && styleForm.get('name')?.touched"
+          >
+            Vui lòng nhập tên style
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Trạng thái</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="status" formControlName="status" />
+            <label for="status" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="closeModal()">
+            Hủy
+          </button>
+          <button
+            type="submit"
+            class="btn-submit"
+            [disabled]="!styleForm.valid || isSubmitting"
+          >
+            {{ isSubmitting ? "Đang xử lý..." : "Lưu" }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

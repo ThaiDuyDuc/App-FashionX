@@ -1,0 +1,249 @@
+/* product-search.component.scss */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+}
+
+.product-search-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+/* Main search bar styles */
+.search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.search-input-wrapper {
+  flex: 1;
+  position: relative;
+  min-width: 200px;
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 40px 12px 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+  }
+
+  .clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+
+    &:hover {
+      color: #1f2937;
+    }
+  }
+}
+
+.barcode-wrapper {
+  position: relative;
+  min-width: 160px;
+
+  i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+  }
+
+  .barcode-input {
+    width: 100%;
+    padding: 12px 12px 12px 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+  }
+}
+
+.advanced-toggle {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+}
+
+.search-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 120px;
+
+  &:hover {
+    background-color: #2563eb;
+  }
+
+  &:disabled {
+    background-color: #93c5fd;
+    cursor: not-allowed;
+  }
+}
+
+/* Advanced search panel styles */
+.advanced-search {
+  background-color: #f8fafc;
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 12px;
+  border: 1px solid #e2e8f0;
+
+  .row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #4b5563;
+      font-size: 14px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 14px;
+
+      &:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+      }
+    }
+  }
+
+  .checkboxes {
+    display: flex;
+    gap: 24px;
+
+    .form-check {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .form-check-input {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+      }
+
+      .form-check-label {
+        font-size: 14px;
+        color: #4b5563;
+      }
+    }
+  }
+
+  .buttons-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+
+    .reset-button {
+      padding: 10px 16px;
+      background-color: #f3f4f6;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #4b5563;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        background-color: #e5e7eb;
+      }
+    }
+
+    .apply-button {
+      padding: 10px 16px;
+      background-color: #3b82f6;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &:hover {
+        background-color: #2563eb;
+      }
+    }
+  }
+}

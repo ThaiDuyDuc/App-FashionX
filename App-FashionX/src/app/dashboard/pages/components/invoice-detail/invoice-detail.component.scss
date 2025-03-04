@@ -1,0 +1,111 @@
+// Overlay styles
+*{
+  margin: 0;
+  padding: 0;
+}
+.overlay {
+  position: fixed; // Đặt overlay ở vị trí cố định
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); // Màu nền tối với độ trong suốt
+  z-index: 1000; // Đảm bảo overlay nằm trên các phần tử khác
+  display: flex; // Sử dụng flexbox để căn giữa modal
+  justify-content: center; // Căn giữa theo chiều ngang
+  align-items: center; // Căn giữa theo chiều dọc
+}
+
+// Modal styles
+.modal {
+  position: relative;
+  width: 90%; // Chiều rộng modal
+  max-width: 900px; // Chiều rộng tối đa
+  background-color: #fff; // Màu nền cho modal
+  border-radius: 10px; // Bo tròn các góc
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); // Đổ bóng cho modal
+  padding: 20px; // Khoảng cách bên trong modal
+  animation: fadeIn 0.3s ease; // Hiệu ứng xuất hiện cho modal
+
+  h2 {
+      text-align: center; // Căn giữa tiêu đề
+      margin-bottom: 20px; // Khoảng cách dưới tiêu đề
+      color: #34495e; // Màu chữ cho tiêu đề
+  }
+
+  p {
+      font-size: 16px; // Kích thước font
+      margin: 10px 0; // Khoảng cách giữa các đoạn văn
+      strong {
+          color: #34495e; // Màu chữ cho phần mạnh
+      }
+  }
+
+  h3 {
+      margin-top: 20px; // Khoảng cách trên tiêu đề phụ
+      margin-bottom: 10px; // Khoảng cách dưới tiêu đề phụ
+      color: #34495e; // Màu chữ cho tiêu đề phụ
+  }
+
+  // Thêm phần tử chứa bảng với thanh cuộn
+  .table-container {
+      max-height: 250px; // Chiều cao tối đa cho bảng
+      overflow-y: auto; // Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao
+      margin-top: 10px; // Khoảng cách trên bảng
+
+      table {
+          width: 100%; // Chiều rộng bảng
+          border-collapse: collapse; // Gộp các đường viền
+
+          thead {
+              background-color: #f2f2f2; // Màu nền cho tiêu đề bảng
+              th {
+                  padding: 10px; // Padding cho ô tiêu đề
+                  text-align: left; // Căn trái cho chữ
+                  border-bottom: 2px solid #ddd; // Đường viền dưới
+                  color: #34495e; // Màu chữ cho tiêu đề bảng
+              }
+          }
+
+          tbody {
+              tr {
+                  &:nth-child(even) {
+                      background-color: #f9f9f9; // Màu nền cho hàng chẵn
+                  }
+
+                  td {
+                      padding: 10px; // Padding cho ô dữ liệu
+                      border-bottom: 1px solid #ddd; // Đường viền dưới
+                      color: #555; // Màu chữ
+                  }
+              }
+          }
+      }
+  }
+
+  // Nút đóng
+  .close-button {
+      display: block; // Hiển thị nút như một khối
+      margin: 20px auto 0; // Căn giữa và khoảng cách trên
+      padding: 10px 20px; // Padding cho nút
+      background-color: #34495e; // Màu nền cho nút
+      color: white; // Màu chữ
+      border: none; // Không có đường viền
+      border-radius: 5px; // Bo tròn các góc
+      cursor: pointer; // Con trỏ khi hover
+
+      &:hover {
+          background-color: #2c3e50; // Màu nền khi hover
+      }
+  }
+}
+
+// Hiệu ứng fadeIn cho modal
+@keyframes fadeIn {
+  from {
+      opacity: 0; // Bắt đầu với độ trong suốt 0
+  }
+  to {
+      opacity: 1; // Kết thúc với độ trong suốt 1
+  }
+}

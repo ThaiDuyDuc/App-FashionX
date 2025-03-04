@@ -1,0 +1,152 @@
+<!-- pos.component.html -->
+<div class="pos-container">
+  <!-- Phần trái: Danh sách sản phẩm và tìm kiếm -->
+  <div class="products-section">
+    <app-product-search (search)="onSearch($event)"> </app-product-search>
+
+    <div class="products-grid">
+      <div
+        class="product-card"
+        *ngFor="let product of filteredProducts"
+        (click)="addProductToOrderByProduct(product)"
+      >
+        <img [src]="product.urlImage" [alt]="product.name" />
+        <div class="product-info">
+          <h4>{{ product.name }}</h4>
+          <p class="price">
+            {{ getProductPrice(product.id) | currency : "VND" }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phần phải: Thông tin đơn hàng -->
+  <div class="order-section">
+    <!-- Phần quản lý hóa đơn chờ -->
+    <div class="pending-orders-section">
+      <h3>Hóa đơn chờ ({{ pendingOrders.length }})</h3>
+      <div class="pending-orders-list">
+        <div
+          class="pending-order-item"
+          *ngFor="let order of pendingOrders; let i = index"
+          [class.active]="i === selectedOrderIndex"
+        >
+          <div class="order-info" (click)="selectPendingOrder(i)">
+            <span class="order-number">
+              Hóa đơn #{{ i + 1 }} - {{ order.fullName }} ({{
+                order.phoneNumber
+              }})
+            </span>
+            <span class="order-time">{{
+              order.createdAt | date : "short"
+            }}</span>
+            <span class="order-total">{{
+              order.totalMoney | currency : "VND"
+            }}</span>
+          </div>
+          <button class="delete-btn" (click)="deletePendingOrder(i)">×</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chọn khách hàng -->
+    <app-customer-select
+      [selectedCustomer]="selectedCustomer"
+      (customerSelected)="selectCustomer($event)"
+    >
+    </app-customer-select>
+
+    <!-- Danh sách sản phẩm trong đơn hàng -->
+    <div class="order-items">
+      <div
+        class="item"
+        *ngFor="let item of currentOrder.orderDetails; let i = index"
+      >
+        <!-- Ảnh sản phẩm -->
+        <img
+          [src]="item.product?.urlImage || 'assets/default-image.jpg'"
+          alt="{{ item.product?.name }}"
+          class="product-img"
+        />
+
+        <span class="product-name">
+          {{ item.product?.name }}
+        </span>
+
+        <span class="product-name">
+          {{ item.productDetail?.size }}
+        </span>
+
+        <!-- Điều chỉnh số lượng -->
+        <div class="quantity-controls">
+          <button (click)="decreaseQuantity(item)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)">+</button>
+        </div>
+
+        <!-- Tổng tiền -->
+        <span class="total-price">
+          {{
+            (item.productDetail?.price || 0) * (item.quantity || 0) | currency
+          }}
+        </span>
+
+        <!-- Nút xóa sản phẩm -->
+        <button class="remove-btn" (click)="removeProduct(i)">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+      <ng-template #noProduct>
+        <p>Không tìm thấy sản phẩm</p>
+      </ng-template>
+    </div>
+
+    <!-- Chọn khuyến mãi -->
+    <app-promotion-select
+      [currentOrder]="currentOrder"
+      (promotionSelected)="applyPromotion($event)"
+    >
+    </app-promotion-select>
+
+    <!-- Tổng kết đơn hàng -->
+    <div class="order-summary">
+      <div *ngFor="let item of currentOrder.orderDetails">
+        <div class="summary-row">
+          <span>Tạm tính:</span>
+          <span>{{
+            (item.productDetail?.price || 0) * item.quantity | currency : "VND"
+          }}</span>
+        </div>
+      </div>
+
+      <!-- <div class="summary-row">
+        <span>Giảm giá:</span>
+        <span>{{ currentOrder.discount | currency : "VND" }}</span>
+      </div>
+      <div class="summary-row total">
+        <span>Tổng cộng:</span>
+        <span>{{ currentOrder.total | currency : "VND" }}</span>
+      </div> -->
+    </div>
+
+    <!-- Nút thao tác -->
+    <div class="action-buttons">
+      <button class="save-button" (click)="createPendingOrder()">
+        Tạo Hóa đơn
+      </button>
+      <button class="pay-button" (click)="openPaymentModal()">
+        Thanh toán
+      </button>
+    </div>
+
+    <!-- Modal thanh toán -->
+    <app-payment-modal
+      *ngIf="showPaymentModal"
+      [order]="currentOrder"
+      (paymentComplete)="processPayment($event)"
+      (closeModal)="closePaymentModal()"
+    >
+    </app-payment-modal>
+  </div>
+</div>

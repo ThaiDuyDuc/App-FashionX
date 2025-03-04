@@ -1,0 +1,363 @@
+<div class="dashboard">
+  <!-- Header Section -->
+  <header class="dashboard-header">
+    <div class="header-title">
+      <h1>Thống kê bán hàng</h1>
+      <span class="date-range">01/02/2024 - 29/02/2024</span>
+    </div>
+    <div class="header-actions">
+      <div class="date-picker">
+        <input type="date" class="date-input" />
+        <span>đến</span>
+        <input type="date" class="date-input" />
+      </div>
+      <button class="btn-export">
+        <i class="fas fa-download"></i>
+        Xuất báo cáo
+      </button>
+    </div>
+  </header>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="card-icon" style="background: rgba(76, 175, 80, 0.1)">
+        <i class="fas fa-dollar-sign" style="color: #4caf50"></i>
+      </div>
+      <div class="card-content">
+        <h3>Tổng doanh thu</h3>
+        <p class="amount">1,234,567,890đ</p>
+        <p class="trend positive">
+          <i class="fas fa-arrow-up"></i>
+          12.5% so với tháng trước
+        </p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="card-icon" style="background: rgba(33, 150, 243, 0.1)">
+        <i class="fas fa-shopping-bag" style="color: #2196f3"></i>
+      </div>
+      <div class="card-content">
+        <h3>Đơn hàng</h3>
+        <p class="amount">1,234</p>
+        <p class="trend positive">
+          <i class="fas fa-arrow-up"></i>
+          8.3% so với tháng trước
+        </p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="card-icon" style="background: rgba(156, 39, 176, 0.1)">
+        <i class="fas fa-tshirt" style="color: #9c27b0"></i>
+      </div>
+      <div class="card-content">
+        <h3>Sản phẩm đã bán</h3>
+        <p class="amount">3,456</p>
+        <p class="trend negative">
+          <i class="fas fa-arrow-down"></i>
+          2.1% so với tháng trước
+        </p>
+      </div>
+    </div>
+
+    <div class="summary-card">
+      <div class="card-icon" style="background: rgba(255, 152, 0, 0.1)">
+        <i class="fas fa-users" style="color: #ff9800"></i>
+      </div>
+      <div class="card-content">
+        <h3>Khách hàng mới</h3>
+        <p class="amount">256</p>
+        <p class="trend positive">
+          <i class="fas fa-arrow-up"></i>
+          5.7% so với tháng trước
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="card-header">
+        <h2>Doanh thu theo thời gian</h2>
+        <div class="period-selector">
+          <button class="active">Ngày</button>
+          <button>Tuần</button>
+          <button>Tháng</button>
+        </div>
+      </div>
+      <div class="chart-container" id="revenueChart"></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="card-header">
+        <h2>Phân bố danh mục</h2>
+        <div class="chart-legend">
+          <span class="legend-item">
+            <span class="dot" style="background: #4caf50"></span>
+            Áo thun
+          </span>
+          <span class="legend-item">
+            <span class="dot" style="background: #2196f3"></span>
+            Áo sơ mi
+          </span>
+          <span class="legend-item">
+            <span class="dot" style="background: #9c27b0"></span>
+            Áo khoác
+          </span>
+        </div>
+      </div>
+      <div class="chart-container" id="categoryChart"></div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="card-header">
+        <h2>Doanh thu & Đơn hàng theo thời gian</h2>
+      </div>
+      <div class="chart-container" id="revenueOrderChart"></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="card-header">
+        <h2>Sản phẩm bán chạy nhất</h2>
+      </div>
+      <div class="chart-container" id="topSellingProductsChart"></div>
+    </div>
+  </div>
+
+  <div class="report-container">
+    <!-- Top Employees -->
+    <div class="employee-cards">
+      <div class="card-header">
+        <h2>Top 5 nhân viên có doanh thu cao nhất</h2>
+      </div>
+      <div class="employee-list">
+        <div class="employee-card">
+          <img
+            src="https://scontent.fvii2-1.fna.fbcdn.net/v/t39.30808-6/444489138_1019981339484259_4504008877707254740_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFK-e4uXM6r_Xldcd9T5rD6URabDd90GjNRFpsN33QaM_8MQ3nlyUDiZAWmkRs-1o9TV3e5_BIXnY6n7b6CC9I5&_nc_ohc=hjwbNhYGZxAQ7kNvgHT6Xmx&_nc_oc=AdiCcUTu-K-AeOfkIbNwOCXKcb-u_8Knin_CaVtp-I_Xyias5bKFEKYPpq57wVheVxVDETeB1PgANvVV1wMn_4as&_nc_zt=23&_nc_ht=scontent.fvii2-1.fna&_nc_gid=AmQ33pLijS01ORgH1F5A1Ul&oh=00_AYCmXJNBWq0ygRml3sTMIYCv1sb6TpRVgUSFms-Ve5GFHA&oe=67B2A5A0"
+            alt="Nguyễn Văn A"
+            class="employee-img"
+          />
+          <div class="employee-info">
+            <h3>Nguyễn Văn A</h3>
+            <p>Top 1</p>
+            <p>Doanh thu: 500,000,000đ</p>
+          </div>
+        </div>
+        <div class="employee-card">
+          <img
+            src="https://scontent.fvii2-4.fna.fbcdn.net/v/t39.30808-6/397957683_717281873766099_8019955201756310600_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeF2i44Rd0vS9e5BWblE6iSS6pXmFtKlJTLqleYW0qUlMupWCzBQsN_UfItCoJX5qxjkWLVv8Kz3py_wITeO_-cc&_nc_ohc=aQhzppjqfuQQ7kNvgEmN9J3&_nc_oc=Adh_ltQ-6q0E3uAe4EXo1bAcRtnGpVD6zuDPIXoegteuycwjpdRazoENaLrce6lAZ6ssCw6U70TLaphn3TMnwAVn&_nc_zt=23&_nc_ht=scontent.fvii2-4.fna&_nc_gid=A0fSyHh0J3NQjZIMNZuw4Vr&oh=00_AYCpq6IjecL-_iHNiuyAOAyaPeWRwYd6pZgpCdwYWWlydA&oe=67B2B72C"
+            alt="Trần Thị B"
+            class="employee-img"
+          />
+          <div class="employee-info">
+            <h3>Trần Thị B</h3>
+            <p>Top 2</p>
+            <p>Doanh thu: 450,000,000đ</p>
+          </div>
+        </div>
+        <div class="employee-card">
+          <img
+            src="https://scontent.fvii2-1.fna.fbcdn.net/v/t39.30808-6/399239352_906011837548537_3789335940311625245_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHsJck9fe_ai92fU6KmmvgwyunLZZcaKvzK6ctllxoq_MmeWIR4Ce9FbjO-sDL7dTW7_ILZhSSzAeO5hy804_M8&_nc_ohc=F5-SRkgMvI4Q7kNvgGgAL_b&_nc_oc=AdgHxldaDd5riSUSYapzgbJ2F4hbEQp25AC41iUBr-aohIfodD0-lXo0K106LAE1lBwva19SG-7NmiQfsU02TQfA&_nc_zt=23&_nc_ht=scontent.fvii2-1.fna&_nc_gid=A8MMATyNBmo6dM8uxbMJ3_C&oh=00_AYDtgiLvOzw8RIpbfB0MbBGgT5EJMGjliCNrrhTj-5lvRQ&oe=67B2B6DA"
+            alt="Trần Thị B"
+            class="employee-img"
+          />
+          <div class="employee-info">
+            <h3>Lê Thị C</h3>
+            <p>Top 3</p>
+            <p>Doanh thu: 450,000,000đ</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Most Used Vouchers -->
+    <div class="voucher-cards">
+      <div class="card-header">
+        <h2>Voucher được sử dụng nhiều nhất</h2>
+      </div>
+      <div class="voucher-list">
+        <div class="voucher-card">
+          <img
+            src="https://image.shutterstock.com/display_pic_with_logo/221602253/2547698461/stock-vector--discount-flash-sale-background-vector-illustration-for-shopping-day-online-shopping-2547698461.jpg"
+            alt="SALE50"
+            class="voucher-img"
+          />
+          <div class="voucher-info">
+            <h3>SALE50</h3>
+            <p>Ngày bắt đầu: 01/02/2024</p>
+            <p>Ngày kết thúc: 29/02/2024</p>
+            <p class="usage-count">Số lần sử dụng: 120 lần</p>
+          </div>
+        </div>
+        <div class="voucher-card">
+          <img
+            src="https://image.shutterstock.com/display_pic_with_logo/334679637/2547019939/stock-vector-editable-flash-sale-vector-d-text-effect-with-modern-style-design-blue-and-yelow-color-2547019939.jpg"
+            alt="DISCOUNT30"
+            class="voucher-img"
+          />
+          <div class="voucher-info">
+            <h3>DISCOUNT30</h3>
+            <p>Ngày bắt đầu: 05/02/2024</p>
+            <p>Ngày kết thúc: 25/02/2024</p>
+            <p class="usage-count">Số lần sử dụng: 95 lần</p>
+          </div>
+        </div>
+        <div class="voucher-card">
+          <img
+            src="https://img.pikbest.com/origin/10/40/85/29bpIkbEsTFDN.png!f305cw"
+            alt="DISCOUNT30"
+            class="voucher-img"
+          />
+          <div class="voucher-info">
+            <h3>Tết Ất Tỵ</h3>
+            <p>Ngày bắt đầu: 05/02/2024</p>
+            <p>Ngày kết thúc: 25/02/2024</p>
+            <p class="usage-count">Số lần sử dụng: 95 lần</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Highest Orders -->
+  <div class="table-card">
+    <div class="card-header">
+      <h2>Đơn hàng có giá trị cao nhất</h2>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Mã đơn hàng</th>
+            <th>Khách hàng</th>
+            <th>Tổng tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#123456</td>
+            <td>Nguyễn Văn C</td>
+            <td>100,000,000đ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Products Table -->
+  <div class="table-card">
+    <div class="card-header">
+      <h2>Sản phẩm bán chạy</h2>
+      <div class="table-actions">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Tìm kiếm sản phẩm..." />
+        </div>
+        <button class="btn-filter">
+          <i class="fas fa-filter"></i>
+          Lọc
+        </button>
+      </div>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Danh mục</th>
+            <th>Đã bán</th>
+            <th>Doanh thu</th>
+            <th>Tồn kho</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="product-cell">
+              <img
+                src="https://polomanor.vn/cdn/shop/files/ao-polo-nam-travis-0.jpg?v=1739261459"
+                alt="Product"
+              />
+              <span>Áo Polo Nam</span>
+            </td>
+            <td>Áo Nam</td>
+            <td>245</td>
+            <td>122,500,000đ</td>
+            <td>
+              <div class="stock-status">
+                <span class="stock-text">89</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 60%"></div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="product-cell">
+              <img
+                src="https://polomanor.vn/cdn/shop/files/ao-polo-nam-travis-0.jpg?v=1739261459"
+                alt="Product"
+              />
+              <span>Áo Polo Nam</span>
+            </td>
+            <td>Áo Nam</td>
+            <td>245</td>
+            <td>122,500,000đ</td>
+            <td>
+              <div class="stock-status">
+                <span class="stock-text">89</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 60%"></div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="product-cell">
+              <img
+                src="https://polomanor.vn/cdn/shop/files/ao-polo-nam-travis-0.jpg?v=1739261459"
+                alt="Product"
+              />
+              <span>Áo Polo Nam</span>
+            </td>
+            <td>Áo Nam</td>
+            <td>245</td>
+            <td>122,500,000đ</td>
+            <td>
+              <div class="stock-status">
+                <span class="stock-text">89</span>
+                <div class="progress-bar">
+                  <div class="progress" style="width: 60%"></div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <!-- More rows... -->
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-footer">
+      <div class="items-per-page">
+        Hiển thị:
+        <select>
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+        </select>
+      </div>
+      <div class="pagination">
+        <button><i class="fas fa-chevron-left"></i></button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <button><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</div>

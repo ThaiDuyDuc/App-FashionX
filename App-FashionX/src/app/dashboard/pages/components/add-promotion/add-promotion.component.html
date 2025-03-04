@@ -1,0 +1,108 @@
+<div class="promotion-form-container">
+  <div class="form-header">
+    <h2>Thêm mới khuyến mãi</h2>
+  </div>
+
+  <form
+    [formGroup]="promotionForm"
+    (ngSubmit)="onSubmit()"
+    class="promotion-form"
+  >
+    <div class="form-group">
+      <label for="code">Mã khuyến mãi</label>
+      <input
+        id="code"
+        type="text"
+        formControlName="code"
+        placeholder="Nhập mã khuyến mãi"
+      />
+      <div
+        class="error-message"
+        *ngIf="promotionForm.get('code')?.errors?.['required'] && promotionForm.get('code')?.touched"
+      >
+        Vui lòng nhập mã khuyến mãi
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="startDate">Ngày bắt đầu</label>
+        <input id="startDate" type="date" formControlName="startDate" />
+        <div
+          class="error-message"
+          *ngIf="promotionForm.get('startDate')?.errors?.['required'] && promotionForm.get('startDate')?.touched"
+        >
+          Vui lòng chọn ngày bắt đầu
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">Ngày kết thúc</label>
+        <input id="endDate" type="date" formControlName="endDate" />
+        <div
+          class="error-message"
+          *ngIf="promotionForm.get('endDate')?.errors?.['required'] && promotionForm.get('endDate')?.touched"
+        >
+          Vui lòng chọn ngày kết thúc
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image" class="image-label">
+        <span>Chọn hình ảnh</span>
+        <input
+          id="image"
+          type="file"
+          formControlName="image"
+          (change)="onImageSelect($event)"
+          accept="image/*"
+          style="display: none"
+        />
+        <!-- Hiển thị hình ảnh đã chọn (nếu có) -->
+        <div *ngIf="imageUrl">
+          <img
+            [src]="imageUrl"
+            alt="Hình ảnh khuyến mãi"
+            class="selected-image"
+          />
+        </div>
+      </label>
+      <div
+        class="error-message"
+        *ngIf="promotionForm.get('image')?.errors?.['required'] && promotionForm.get('image')?.touched"
+      >
+        Vui lòng chọn hình ảnh
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="value">Giá trị khuyến mãi</label>
+      <input
+        id="value"
+        type="number"
+        step="0.01"
+        formControlName="value"
+        placeholder="Nhập giá trị khuyến mãi"
+      />
+      <div
+        class="error-message"
+        *ngIf="promotionForm.get('value')?.errors?.['required'] && promotionForm.get('value')?.touched"
+      >
+        Vui lòng nhập giá trị khuyến mãi
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-close" (click)="onClose()">Đóng</button>
+      <button type="button" class="btn-cancel" (click)="onCancel()">Hủy</button>
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="!promotionForm.valid || isSubmitting"
+      >
+        {{ isSubmitting ? "Đang xử lý..." : "Lưu" }}
+      </button>
+    </div>
+  </form>
+</div>

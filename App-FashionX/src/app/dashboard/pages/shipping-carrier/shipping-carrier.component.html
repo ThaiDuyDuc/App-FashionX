@@ -1,0 +1,93 @@
+<!-- shipping-carrier.component.html -->
+<div class="shipping-container">
+  <div class="content-wrapper">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="title-section">
+        <h1>Quản lý đơn vị vận chuyển</h1>
+        <p class="subtitle">
+          Quản lý thông tin các đơn vị vận chuyển trong hệ thống
+        </p>
+      </div>
+
+      <button
+        class="btn-add"
+        [routerLink]="['/dashboard-fashionX/addShippingCarrier']"
+      >
+        <i class="fas fa-plus"></i>
+        Thêm
+      </button>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="filter-section">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Tìm kiếm đơn vị vận chuyển..." />
+      </div>
+      <div class="filter-buttons">
+        <button class="filter-btn active">Tất cả</button>
+        <button class="filter-btn">Đang hoạt động</button>
+        <button class="filter-btn">Ngừng hoạt động</button>
+      </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên đơn vị</th>
+            <th>Thông tin liên hệ</th>
+            <th>Trạng thái</th>
+            <th>Ngày tạo</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let carrier of carriers">
+            <td class="id-column">#{{ carrier.id }}</td>
+            <td class="name-column">
+              <div class="carrier-name">{{ carrier.name }}</div>
+            </td>
+            <td>{{ carrier.contactInfo }}</td>
+            <td>
+              <span class="status-badge" [class.active]="carrier.status">
+                {{ carrier.status ? "Đang hoạt động" : "Ngừng hoạt động" }}
+              </span>
+            </td>
+            <td>{{ carrier.createdAt | date : "dd/MM/yyyy" }}</td>
+            <td class="actions-column">
+              <button
+                class="action-btn edit"
+                (click)="editCarrier(carrier)"
+                title="Chỉnh sửa"
+              >
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="action-btn delete"
+                (click)="deleteCarrier(carrier.id)"
+                title="Xóa"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span class="page-ellipsis">...</span>
+      <button class="page-btn">10</button>
+      <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</div>

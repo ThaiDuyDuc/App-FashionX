@@ -1,0 +1,69 @@
+<div class="product-management">
+  <div class="header">
+    <nav>
+      <a [routerLink]="['/']">Trang Chủ</a> >
+      <span>Hóa Đơn</span>
+    </nav>
+    <!-- (click)="addProduct()" -->
+    <button
+      class="btn-primary"
+      [routerLink]="['/dashboard-fashionX/addProduct']"
+    >
+      <i class="fas fa-plus"></i>
+      Thêm Sản phẩm
+    </button>
+  </div>
+
+  <div class="search-section">
+    <div class="search-box">
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Tìm kiếm theo mã, tên sản phẩm..."
+        (keyup.enter)="searchProducts()"
+      />
+      <i class="fas fa-search"></i>
+    </div>
+    <button class="btn-outline">Lọc</button>
+  </div>
+
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>Ảnh</th>
+        <th>Mã SP</th>
+        <th>Tên sản phẩm</th>
+        <th>Mô tả</th>
+        <th>Trạng thái</th>
+        <th>Ngày tạo</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>
+          <img [src]="product.url_image" [alt]="product.name" />
+        </td>
+        <td>{{ product.code }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>
+          <span
+            [class]="'status-badge ' + (product.status ? 'active' : 'inactive')"
+          >
+            {{ product.status ? "Hoạt động" : "Không hoạt động" }}
+          </span>
+        </td>
+        <td>{{ product.created_at }}</td>
+        <td class="actions">
+          <button class="btn-icon" (click)="editProduct(product.id)">
+            <i class="fas fa-edit"></i>
+          </button>
+          <button class="btn-icon delete" (click)="deleteProduct(product.id)">
+            <i class="fas fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

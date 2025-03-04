@@ -1,0 +1,52 @@
+<div *ngIf="showModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{{ isEditing ? "Chỉnh sửa" : "Thêm mới" }} Style</h2>
+      <button class="btn-icon" (click)="closeModal()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="styleForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Tên Style</label>
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            placeholder="Nhập tên style"
+          />
+          <div
+            class="error-message"
+            *ngIf="styleForm.get('name')?.errors?.['required'] && styleForm.get('name')?.touched"
+          >
+            Vui lòng nhập tên style
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Trạng thái</label>
+          <div class="toggle-switch">
+            <input type="checkbox" id="status" formControlName="status" />
+            <label for="status" class="toggle-label"></label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="closeModal()">
+            Hủy
+          </button>
+          <button
+            type="submit"
+            class="btn-submit"
+            [disabled]="!styleForm.valid || isSubmitting"
+          >
+            {{ isSubmitting ? "Đang xử lý..." : "Lưu" }}
+          </button>
+          <button (click)="onClose()">Đóng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Chiều rộng full màn hình */
+  height: 60px; /* Chiều cao navbar */
+  background-color: #34495e; /* Màu nền navbar */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px; /* Thêm khoảng cách 2 bên */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Thêm bóng cho navbar */
+  z-index: 1000; /* Đảm bảo navbar luôn nằm trên các thành phần khác */
+}
+
+/* Phần bên trái của Navbar */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Nút Toggle Sidebar */
+.navbar .toggle-btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  margin-right: 10px; /* Khoảng cách giữa nút và logo */
+}
+
+.navbar .toggle-btn:hover {
+  color: #ecf0f1; /* Thay đổi màu khi hover */
+}
+
+/* Logo */
+.navbar-left .logo {
+  font-size: 21px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Phần bên phải của Navbar */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Khoảng cách giữa các icon */
+}
+
+.navbar-right i {
+  font-size: 18px; /* Kích thước icon */
+  cursor: pointer;
+  transition: color 0.3s ease; /* Hiệu ứng hover */
+}
+
+.navbar-right i:hover {
+  color: #ecf0f1; /* Màu sáng hơn khi hover */
+}

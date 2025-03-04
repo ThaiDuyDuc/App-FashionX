@@ -1,0 +1,492 @@
+<div class="add-product-container">
+  <div class="add-product-header">
+    <h2 class="title">Thêm sản phẩm mới</h2>
+    <p class="subtitle">Điền đầy đủ thông tin sản phẩm và các biến thể</p>
+  </div>
+
+  <div class="loading-overlay" *ngIf="isLoading">
+    <div class="spinner"></div>
+    <p *ngIf="uploadProgress > 0">Đang tải lên: {{ uploadProgress }}%</p>
+  </div>
+
+  <form [formGroup]="productForm" class="product-form">
+    <div class="form-section">
+      <h3 class="section-title">Thông tin cơ bản</h3>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="code">Mã sản phẩm<span class="required">*</span></label>
+          <input
+            type="text"
+            id="code"
+            formControlName="code"
+            placeholder="Nhập mã sản phẩm"
+            [ngClass]="{
+              invalid:
+                productForm.get('code')?.invalid &&
+                productForm.get('code')?.touched
+            }"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              productForm.get('code')?.invalid &&
+              productForm.get('code')?.touched
+            "
+          >
+            Vui lòng nhập mã sản phẩm
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="name">Tên sản phẩm<span class="required">*</span></label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            placeholder="Nhập tên sản phẩm"
+            [ngClass]="{
+              invalid:
+                productForm.get('name')?.invalid &&
+                productForm.get('name')?.touched
+            }"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              productForm.get('name')?.invalid &&
+              productForm.get('name')?.touched
+            "
+          >
+            Vui lòng nhập tên sản phẩm
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description"
+          >Mô tả sản phẩm<span class="required">*</span></label
+        >
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Nhập mô tả chi tiết về sản phẩm"
+          rows="4"
+          [ngClass]="{
+            invalid:
+              productForm.get('description')?.invalid &&
+              productForm.get('description')?.touched
+          }"
+        ></textarea>
+        <div
+          class="error-message"
+          *ngIf="
+            productForm.get('description')?.invalid &&
+            productForm.get('description')?.touched
+          "
+        >
+          Vui lòng nhập mô tả sản phẩm
+        </div>
+      </div>
+
+      <div class="form-group image-upload">
+        <label>Hình ảnh sản phẩm</label>
+        <div class="upload-container" [ngClass]="{ 'has-image': previewImage }">
+          <div class="preview" *ngIf="previewImage">
+            <img [src]="previewImage" alt="Hình ảnh sản phẩm" />
+            <button
+              type="button"
+              class="remove-image"
+              (click)="
+                previewImage = null; productForm.get('urlImage')?.setValue('')
+              "
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="upload-area" *ngIf="!previewImage">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Kéo thả hình ảnh hoặc click để chọn</p>
+            <input
+              type="file"
+              accept="image/*"
+              (change)="onFileSelected($event)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group switch-container">
+        <label for="status">Trạng thái</label>
+        <div class="toggle-switch">
+          <input type="checkbox" id="status" formControlName="status" />
+          <label for="status" class="switch-label">
+            <span class="switch-on">Hiển thị</span>
+            <span class="switch-off">Ẩn</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn-next"
+          (click)="toggleVariantSection()"
+          [disabled]="!productForm.valid"
+        >
+          Tiếp tục <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div class="variants-section" *ngIf="showVariants">
+    <h3 class="section-title">Biến thể sản phẩm</h3>
+
+    <form [formGroup]="productDetailForm" class="variant-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="brandId"
+            >Thương hiệu<span class="required">*</span></label
+          >
+          <select
+            id="brandId"
+            formControlName="brandId"
+            [ngClass]="{
+              invalid:
+                productDetailForm.get('brandId')?.invalid &&
+                productDetailForm.get('brandId')?.touched
+            }"
+          >
+            <option [ngValue]="null" disabled>Chọn thương hiệu</option>
+            <option *ngFor="let brand of brands" [ngValue]="brand.id">
+              {{ brand.name }}
+            </option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              productDetailForm.get('brandId')?.invalid &&
+              productDetailForm.get('brandId')?.touched
+            "
+          >
+            Vui lòng chọn thương hiệu
+          </div>
+        </div>
+
+        <!-- <div class="form-group">
+          <label for="tradeMarkId"
+            >Nhãn hiệu<span class="required">*</span></label
+          >
+          <select
+            id="tradeMarkId"
+            formControlName="tradeMarkId"
+            [ngClass]="{
+              invalid:
+                productDetailForm.get('tradeMarkId')?.invalid &&
+                productDetailForm.get('tradeMarkId')?.touched
+            }"
+          >
+            <option [ngValue]="null" disabled>Chọn nhãn hiệu</option>
+            <option *ngFor="let tm of trademarks" [ngValue]="tm.id">
+              {{ tm.name }}
+            </option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              productDetailForm.get('tradeMarkId')?.invalid &&
+              productDetailForm.get('tradeMarkId')?.touched
+            "
+          >
+            Vui lòng chọn nhãn hiệu
+          </div>
+        </div>
+      </div> -->
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="styleId"
+              >Kiểu dáng<span class="required">*</span></label
+            >
+            <select
+              id="styleId"
+              formControlName="styleId"
+              [ngClass]="{
+                invalid:
+                  productDetailForm.get('styleId')?.invalid &&
+                  productDetailForm.get('styleId')?.touched
+              }"
+            >
+              <option [ngValue]="null" disabled>Chọn kiểu dáng</option>
+              <option *ngFor="let style of styles" [ngValue]="style.id">
+                {{ style.name }}
+              </option>
+            </select>
+            <div
+              class="error-message"
+              *ngIf="
+                productDetailForm.get('styleId')?.invalid &&
+                productDetailForm.get('styleId')?.touched
+              "
+            >
+              Vui lòng chọn kiểu dáng
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="materialId"
+              >Chất liệu<span class="required">*</span></label
+            >
+            <select
+              id="materialId"
+              formControlName="materialId"
+              [ngClass]="{
+                invalid:
+                  productDetailForm.get('materialId')?.invalid &&
+                  productDetailForm.get('materialId')?.touched
+              }"
+            >
+              <option [ngValue]="null" disabled>Chọn chất liệu</option>
+              <option
+                *ngFor="let material of materials"
+                [ngValue]="material.id"
+              >
+                {{ material.name }}
+              </option>
+            </select>
+            <div
+              class="error-message"
+              *ngIf="
+                productDetailForm.get('materialId')?.invalid &&
+                productDetailForm.get('materialId')?.touched
+              "
+            >
+              Vui lòng chọn chất liệu
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="form-row">
+        <div class="form-group">
+          <label for="soleId">Loại đế<span class="required">*</span></label>
+          <select
+            id="soleId"
+            formControlName="soleId"
+            [ngClass]="{
+              invalid:
+                productDetailForm.get('soleId')?.invalid &&
+                productDetailForm.get('soleId')?.touched
+            }"
+          >
+            <option [ngValue]="null" disabled>Chọn loại đế</option>
+            <option *ngFor="let sole of soles" [ngValue]="sole.id">
+              {{ sole.name }}
+            </option>
+          </select>
+          <div
+            class="error-message"
+            *ngIf="
+              productDetailForm.get('soleId')?.invalid &&
+              productDetailForm.get('soleId')?.touched
+            "
+          >
+            Vui lòng chọn loại đế
+          </div>
+        </div> -->
+
+        <!-- HTML Template -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="colorIds">Màu sắc<span class="required">*</span></label>
+            <select
+              id="colorIds"
+              formControlName="colorIds"
+              multiple
+              class="multi-select"
+              [ngClass]="{
+                invalid:
+                  productDetailForm.get('colorIds')?.invalid &&
+                  productDetailForm.get('colorIds')?.touched
+              }"
+            >
+              <option *ngFor="let color of colors" [value]="color.id">
+                {{ color.name }}
+              </option>
+            </select>
+            <div
+              class="error-message"
+              *ngIf="
+                productDetailForm.get('colorIds')?.invalid &&
+                productDetailForm.get('colorIds')?.touched
+              "
+            >
+              Vui lòng chọn ít nhất một màu sắc
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="sizeIds">Kích cỡ<span class="required">*</span></label>
+            <select
+              id="sizeIds"
+              formControlName="sizeIds"
+              multiple
+              class="multi-select"
+              [ngClass]="{
+                invalid:
+                  productDetailForm.get('sizeIds')?.invalid &&
+                  productDetailForm.get('sizeIds')?.touched
+              }"
+            >
+              <option *ngFor="let size of sizes" [value]="size.id">
+                {{ size.name }}
+              </option>
+            </select>
+            <div
+              class="error-message"
+              *ngIf="
+                productDetailForm.get('sizeIds')?.invalid &&
+                productDetailForm.get('sizeIds')?.touched
+              "
+            >
+              Vui lòng chọn ít nhất một kích cỡ
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Giá bán<span class="required">*</span></label>
+          <input
+            type="number"
+            id="price"
+            formControlName="price"
+            placeholder="Nhập giá bán"
+            [ngClass]="{
+              invalid:
+                productDetailForm.get('price')?.invalid &&
+                productDetailForm.get('price')?.touched
+            }"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              productDetailForm.get('price')?.invalid &&
+              productDetailForm.get('price')?.touched
+            "
+          >
+            Vui lòng nhập giá bán hợp lệ
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="quantity">Số lượng<span class="required">*</span></label>
+          <input
+            type="number"
+            id="quantity"
+            formControlName="quantity"
+            placeholder="Nhập số lượng"
+            [ngClass]="{
+              invalid:
+                productDetailForm.get('quantity')?.invalid &&
+                productDetailForm.get('quantity')?.touched
+            }"
+          />
+          <div
+            class="error-message"
+            *ngIf="
+              productDetailForm.get('quantity')?.invalid &&
+              productDetailForm.get('quantity')?.touched
+            "
+          >
+            Vui lòng nhập số lượng hợp lệ
+          </div>
+        </div>
+
+        <div class="form-group switch-container">
+          <label for="statusVariant">Trạng thái</label>
+          <div class="toggle-switch">
+            <input
+              type="checkbox"
+              id="statusVariant"
+              formControlName="status"
+            />
+            <label for="statusVariant" class="switch-label">
+              <span class="switch-on">Hiển thị</span>
+              <span class="switch-off">Ẩn</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-add-variant" (click)="addVariant()">
+          <i class="fas fa-plus"></i> Thêm biến thể
+        </button>
+      </div>
+    </form>
+
+    <div class="variants-list" *ngIf="productVariants.length > 0">
+      <h4>Danh sách biến thể ({{ productVariants.length }})</h4>
+
+      <div class="variants-table">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Màu sắc</th>
+              <th>Kích cỡ</th>
+              <th>Giá bán</th>
+              <th>Số lượng</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr *ngFor="let variant of productVariants; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ getColorName(variant.colorId) }}</td>
+              <td>{{ sizes.find(s => s.id === variant.sizeId)?.name }}</td>
+              <td>{{ variant.price | currency : "VND" }}</td>
+              <td>{{ variant.quantity }}</td>
+              <td>
+                <span
+                  [ngClass]="{
+                    'status-active': variant.status,
+                    'status-inactive': !variant.status
+                  }"
+                >
+                  {{ variant.status ? "Hiển thị" : "Ẩn" }}
+                </span>
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn-remove"
+                  (click)="removeVariant(i)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-actions final-actions">
+        <button type="button" class="btn-cancel" (click)="resetForm()">
+          <i class="fas fa-times"></i> Hủy
+        </button>
+        <button
+          type="button"
+          class="btn-save"
+          (click)="saveProduct()"
+          [disabled]="isSubmitting"
+        >
+          <i class="fas fa-save"></i> Lưu sản phẩm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

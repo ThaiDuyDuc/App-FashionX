@@ -1,0 +1,243 @@
+// Variables
+$primary-color: #3b82f6;
+$danger-color: #ef4444;
+$success-color: #10b981;
+$border-color: #e5e7eb;
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$background-white: #ffffff;
+$background-gray: #f9fafb;
+
+// Mixins
+@mixin transition {
+  transition: all 0.3s ease;
+}
+
+@mixin input-focus {
+  outline: none;
+  border-color: $primary-color;
+  box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: $background-white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+  .header {
+    padding: 1.5rem 2rem;
+    background: $background-gray;
+    border-bottom: 1px solid $border-color;
+
+    h2 {
+      color: $text-primary;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  form {
+    padding: 2rem;
+
+    .form-group {
+      margin-bottom: 1.5rem;
+
+      label {
+        display: block;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: $text-primary;
+        margin-bottom: 0.5rem;
+
+        .required {
+          color: $danger-color;
+          margin-left: 0.25rem;
+        }
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1.5px solid $border-color;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        color: $text-primary;
+        background-color: $background-white;
+        @include transition;
+
+        &::placeholder {
+          color: $text-secondary;
+        }
+
+        &:focus {
+          @include input-focus;
+        }
+
+        &:hover:not(:focus) {
+          border-color: darken($border-color, 10%);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .error-message {
+        display: block;
+        margin-top: 0.5rem;
+        color: $danger-color;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding-left: 0.25rem;
+      }
+    }
+
+    .switch-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+
+      .switch-label {
+        font-weight: 500;
+        color: $text-primary;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-block;
+        width: 48px;
+        height: 24px;
+
+        input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+
+          &:checked + .slider {
+            background-color: $success-color;
+
+            &:before {
+              transform: translateX(24px);
+            }
+          }
+
+          &:focus + .slider {
+            box-shadow: 0 0 0 3px rgba($success-color, 0.1);
+          }
+        }
+
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: $text-secondary;
+          border-radius: 24px;
+          @include transition;
+
+          &:before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 2px;
+            bottom: 2px;
+            background-color: $background-white;
+            border-radius: 50%;
+            @include transition;
+          }
+
+          &:hover {
+            background-color: darken($text-secondary, 10%);
+          }
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid $border-color;
+
+      button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        @include transition;
+
+        i {
+          font-size: 0.875rem;
+        }
+      }
+
+      .btn-cancel {
+        background-color: $background-gray;
+        color: $text-secondary;
+        border: 1.5px solid $border-color;
+
+        &:hover {
+          background-color: darken($background-gray, 3%);
+          border-color: darken($border-color, 10%);
+          color: darken($text-secondary, 10%);
+        }
+      }
+
+      .btn-submit {
+        background-color: $primary-color;
+        color: $background-white;
+        border: none;
+
+        &:hover:not(:disabled) {
+          background-color: darken($primary-color, 5%);
+          transform: translateY(-1px);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+          transform: none;
+        }
+
+        &:active:not(:disabled) {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+// Animation keyframes for form loading
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.form-loading {
+  .form-group {
+    input, textarea {
+      background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+      background-size: 2000px 100%;
+      animation: shimmer 2s infinite linear;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+<div class="overlay" *ngIf="isModalOpen">
+  <div class="modal">
+    <h2>Chi Tiết Hóa Đơn</h2>
+    <p><strong>Mã Hóa Đơn:</strong> {{ data.invoiceId }}</p>
+    <p><strong>Tên Khách Hàng:</strong> {{ data.customerName }}</p>
+    <p><strong>Ngày Tạo:</strong> {{ data.date | date : "dd/MM/yyyy" }}</p>
+    <p><strong>Trạng Thái:</strong> {{ data.status }}</p>
+    <p><strong>Tổng Tiền:</strong> {{ data.totalPrice | currency }}</p>
+
+    <h3>Danh Sách Sản Phẩm</h3>
+    <div class="table-container">
+      <!-- Thêm phần tử chứa bảng -->
+      <table>
+        <thead>
+          <tr>
+            <th>Mã Sản Phẩm</th>
+            <th>Tên Sản Phẩm</th>
+            <th>Giá Sản Phẩm</th>
+            <th>Số Lượng</th>
+            <th>Thành Tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of data.products">
+            <td>{{ product.productId }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.price | currency }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.price * product.quantity | currency }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="close-button" (click)="close()">Đóng</button>
+  </div>
+</div>

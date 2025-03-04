@@ -1,0 +1,277 @@
+// styles/pos.component.scss
+.pos-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
+  background-color: #f5f5f5;
+
+  .products-section {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    .search-bar {
+      margin-bottom: 20px;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+
+      .product-card {
+        background: white;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        img {
+          width: 100%;
+          height: 120px;
+          object-fit: cover;
+          border-radius: 4px;
+        }
+
+        .product-info {
+          margin-top: 10px;
+          text-align: center;
+
+          h4 {
+            margin: 0;
+            font-size: 14px;
+            color: #333;
+          }
+
+          .price {
+            color: #e44d26;
+            font-weight: bold;
+            margin-top: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .order-section {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+    // Styles cho phần hóa đơn chờ
+    .pending-orders-section {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+
+      h3 {
+        margin-top: 0;
+        font-size: 1rem;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .pending-orders-list {
+        max-height: 150px;
+        overflow-y: auto;
+        margin-top: 0.5rem;
+
+        .pending-order-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem;
+          margin-bottom: 0.5rem;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          background-color: white;
+          transition: all 0.2s;
+
+          &.active {
+            border-color: #4caf50;
+            background-color: #e8f5e9;
+          }
+
+          &:hover {
+            background-color: #f5f5f5;
+          }
+
+          .order-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+
+            .order-number {
+              font-weight: bold;
+            }
+
+            .order-time {
+              font-size: 0.8rem;
+              color: #666;
+            }
+
+            .order-total {
+              font-weight: bold;
+              color: #4caf50;
+            }
+          }
+
+          .delete-btn {
+            background: none;
+            border: none;
+            color: #f44336;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+              background-color: rgba(244, 67, 54, 0.1);
+              border-radius: 50%;
+            }
+          }
+        }
+      }}
+
+    .customer-info {
+      margin-bottom: 20px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+
+    .order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+
+        .product-img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 5px;
+          margin-right: 10px;
+        }
+
+        .product-name {
+          flex: 1;
+          font-weight: bold;
+        }
+
+        .quantity-controls {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          button {
+            width: 30px;
+            height: 30px;
+            border: none;
+            background: #ddd;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+
+            &:hover {
+              background: #bbb;
+            }
+          }
+
+          span {
+            width: 30px;
+            text-align: center;
+            font-size: 16px;
+          }
+        }
+
+        .total-price {
+          font-weight: bold;
+          color: #333;
+        }
+
+        .remove-btn {
+          background: none;
+          border: none;
+          color: red;
+          cursor: pointer;
+          font-size: 18px;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: darkred;
+          }
+        }
+      }
+    }
+
+    .order-summary {
+      border-top: 2px solid #eee;
+      padding-top: 15px;
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .total {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e44d26;
+      }
+    }
+
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+
+      button {
+        padding: 12px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+
+        &.save-button {
+          background: #4CAF50;
+          color: white;
+        }
+
+        &.pay-button {
+          background: #e44d26;
+          color: white;
+        }
+      }
+    }
+  }
+}

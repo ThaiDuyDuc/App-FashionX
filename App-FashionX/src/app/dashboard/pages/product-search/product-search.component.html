@@ -1,0 +1,132 @@
+<!-- product-search.component.html -->
+<div class="product-search-container">
+  <form [formGroup]="searchForm" (ngSubmit)="performSearch()">
+    <!-- Main search bar -->
+    <div class="search-bar">
+      <div class="search-input-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input
+          type="text"
+          formControlName="keyword"
+          placeholder="Tìm kiếm sản phẩm theo tên, mã..."
+          class="search-input"
+        />
+        <button
+          *ngIf="searchForm.get('keyword')?.value"
+          type="button"
+          class="clear-btn"
+          (click)="searchForm.get('keyword')?.setValue('')"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="barcode-wrapper">
+        <i class="fas fa-barcode"></i>
+        <input
+          type="text"
+          formControlName="barcode"
+          placeholder="Quét mã vạch"
+          class="barcode-input"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="advanced-toggle"
+        (click)="toggleAdvancedSearch()"
+      >
+        <i
+          class="fas"
+          [ngClass]="showAdvancedSearch ? 'fa-chevron-up' : 'fa-chevron-down'"
+        ></i>
+        {{ showAdvancedSearch ? "Ẩn tìm kiếm nâng cao" : "Tìm kiếm nâng cao" }}
+      </button>
+
+      <button type="submit" class="search-button" [disabled]="isLoading">
+        <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+        <span *ngIf="!isLoading">Tìm kiếm</span>
+      </button>
+    </div>
+
+    <!-- Advanced search panel -->
+    <div class="advanced-search" *ngIf="showAdvancedSearch">
+      <div class="row">
+        <div class="form-group">
+          <label>Danh mục</label>
+          <select formControlName="categoryId" class="form-control">
+            <option [ngValue]="null">Tất cả danh mục</option>
+            <option *ngFor="let cat of categories" [value]="cat.id">
+              {{ cat.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Nhà cung cấp</label>
+          <select formControlName="supplierId" class="form-control">
+            <option [ngValue]="null">Tất cả nhà cung cấp</option>
+            <option *ngFor="let sup of suppliers" [value]="sup.id">
+              {{ sup.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label>Giá từ</label>
+          <input
+            type="number"
+            formControlName="priceFrom"
+            class="form-control"
+            placeholder="VNĐ"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Đến</label>
+          <input
+            type="number"
+            formControlName="priceTo"
+            class="form-control"
+            placeholder="VNĐ"
+          />
+        </div>
+      </div>
+
+      <div class="row checkboxes">
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="hasPromotion"
+            formControlName="hasPromotion"
+            class="form-check-input"
+          />
+          <label class="form-check-label" for="hasPromotion"
+            >Có khuyến mãi</label
+          >
+        </div>
+
+        <div class="form-check">
+          <input
+            type="checkbox"
+            id="inStock"
+            formControlName="inStock"
+            class="form-check-input"
+          />
+          <label class="form-check-label" for="inStock">Còn hàng</label>
+        </div>
+      </div>
+
+      <div class="buttons-row">
+        <button type="button" class="reset-button" (click)="resetSearch()">
+          <i class="fas fa-undo"></i> Đặt lại
+        </button>
+        <button type="submit" class="apply-button">
+          <i class="fas fa-filter"></i> Áp dụng bộ lọc
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

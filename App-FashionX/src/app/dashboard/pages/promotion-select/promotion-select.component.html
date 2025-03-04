@@ -1,0 +1,48 @@
+<div class="promotion-section">
+  <h4>Khuyến mãi</h4>
+
+  <div class="promotion-search">
+    <input
+      type="text"
+      [(ngModel)]="voucherCode"
+      placeholder="Nhập mã khuyến mãi"
+      (keyup.enter)="checkPromotion()"
+    />
+    <button (click)="checkPromotion()">Áp dụng</button>
+  </div>
+
+  <div class="available-promotions" *ngIf="availableVouchers.length">
+    <h5>Khuyến mãi hiện có</h5>
+    <div
+      class="promotion-item"
+      *ngFor="let promo of availableVouchers"
+      (click)="selectPromotion(promo)"
+      [class.selected]="selectedVoucher?.id === promo.id"
+    >
+      <div class="promo-info">
+        <span class="promo-name">{{ promo.name }}</span>
+        <span class="promo-value">
+          {{
+            promo.type === "PERCENTAGE"
+              ? promo.value + "%"
+              : (promo.value | currency : "VND")
+          }}
+        </span>
+      </div>
+      <div class="promo-code">{{ promo.code }}</div>
+      <div class="promo-condition" *ngIf="promo.voucherConstraint">
+        Đơn tối thiểu: {{ promo.voucherConstraint }}
+      </div>
+    </div>
+  </div>
+
+  <div class="selected-promotion" *ngIf="selectedVoucher">
+    <div class="selected-promo-info">
+      <span>Đang áp dụng: {{ selectedVoucher.name }}</span>
+      <button class="remove-btn" (click)="removePromotion()">×</button>
+    </div>
+    <div class="discount-amount">
+      Giảm giá: {{ calculateDiscount() | currency : "VND" }}
+    </div>
+  </div>
+</div>

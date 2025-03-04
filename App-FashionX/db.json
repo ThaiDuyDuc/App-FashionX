@@ -1,0 +1,571 @@
+{
+  "products": [
+    {
+      "id": 101,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-01T12:00:00",
+      "updated_at": "2024-01-05T15:30:00",
+      "deleted": false,
+      "code": "polo-11",
+      "description": "Áo Polo Christmas Vibe The Checked",
+      "url_image": "https://product.hstatic.net/1000026602/product/00009109_0472a3cf37884ea887bb0e212c77c275_large.jpg",
+      "name": "Áo Polo",
+      "status": true
+    },
+    {
+      "id": 102,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "code": "thun-1",
+      "description": "Họa Tiết Thêu Móc Xích Raglan ICDN Form Oversize",
+      "url_image": "https://product.hstatic.net/1000360022/product/ao-thun-icondenim-raglan-icdn__5__425924ab86db409c8e79f3e8552fa381_1024x1024.jpg",
+      "name": "Áo Thun Nam",
+      "status": true
+    },
+    {
+      "id": 102,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "code": "thun-1",
+      "description": "Họa Tiết Thêu Móc Xích Raglan ICDN Form Oversize",
+      "url_image": "https://product.hstatic.net/1000360022/product/ao-thun-icondenim-raglan-icdn__5__425924ab86db409c8e79f3e8552fa381_1024x1024.jpg",
+      "name": "Áo Thun Nam",
+      "status": true
+    },
+    {
+      "id": 102,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "code": "thun-1",
+      "description": "Họa Tiết Thêu Móc Xích Raglan ICDN Form Oversize",
+      "url_image": "https://product.hstatic.net/1000360022/product/ao-thun-icondenim-raglan-icdn__5__425924ab86db409c8e79f3e8552fa381_1024x1024.jpg",
+      "name": "Áo Thun Nam",
+      "status": true
+    },
+    {
+      "id": 102,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "code": "thun-1",
+      "description": "Họa Tiết Thêu Móc Xích Raglan ICDN Form Oversize",
+      "url_image": "https://product.hstatic.net/1000360022/product/ao-thun-icondenim-raglan-icdn__5__425924ab86db409c8e79f3e8552fa381_1024x1024.jpg",
+      "name": "Áo Thun Nam",
+      "status": true
+    },
+    {
+      "id": 102,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "code": "thun-1",
+      "description": "Họa Tiết Thêu Móc Xích Raglan ICDN Form Oversize",
+      "url_image": "https://product.hstatic.net/1000360022/product/ao-thun-icondenim-raglan-icdn__5__425924ab86db409c8e79f3e8552fa381_1024x1024.jpg",
+      "name": "Áo Thun Nam",
+      "status": true
+    },
+    {
+      "id": 102,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "code": "thun-1",
+      "description": "Họa Tiết Thêu Móc Xích Raglan ICDN Form Oversize",
+      "url_image": "https://product.hstatic.net/1000360022/product/ao-thun-icondenim-raglan-icdn__5__425924ab86db409c8e79f3e8552fa381_1024x1024.jpg",
+      "name": "Áo Thun Nam",
+      "status": true
+    }
+  ],
+  "sizes": [
+    {
+      "id": 1,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-01T12:00:00",
+      "updated_at": "2024-01-05T15:30:00",
+      "deleted": false,
+      "name": "Small",
+      "status": true
+    },
+    {
+      "id": 2,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-02T10:45:00",
+      "updated_at": "2024-01-06T14:20:00",
+      "deleted": false,
+      "name": "Medium",
+      "status": true
+    },
+    {
+      "id": 3,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-01-03T09:15:00",
+      "updated_at": "2024-01-07T11:50:00",
+      "deleted": false,
+      "name": "Large",
+      "status": true
+    }
+  ],
+  "productDetails": [
+  {
+    "id": 1,
+    "productId": 101,
+    "brandId": 1,
+    "colorId": 3,
+    "materialId": 2,
+    "sizeId": 1,
+    "soleId": 1,
+    "styleId": 2,
+    "tradeMarkId": 4,
+    "price": 1500,
+    "quantity": 10,
+    "status": true
+  },
+  {
+    "id": 2,
+    "productId": 102,
+    "brandId": 1,
+    "colorId": 2,
+    "materialId": 3,
+    "sizeId": 2,
+    "soleId": 2,
+    "styleId": 3,
+    "tradeMarkId": 5,
+    "price": 1800,
+    "quantity": 5,
+    "status": true
+  }
+],
+  "Order_detail": [
+    {
+      "id": "1",
+      "Order_id": 1,
+      "Product_detail_id": 1,
+      "Price": 100,
+      "Quantity": 2,
+      "Status": true,
+      "Total_money": 200
+    },
+    {
+      "id": "2",
+      "Order_id": 1,
+      "Product_detail_id": 2,
+      "Price": 150,
+      "Quantity": 1,
+      "Status": true,
+      "Total_money": 150
+    },
+    {
+      "id": "3",
+      "Order_id": 2,
+      "Product_detail_id": 3,
+      "Price": 200,
+      "Quantity": 1,
+      "Status": false,
+      "Total_money": 200
+    }
+  ],
+  "Order_history": [
+    {
+      "id": "1",
+      "Shop_order_id": 1,
+      "Date": "2023-10-01T10:00:00Z",
+      "Action_description": "Đặt hàng thành công",
+      "Action_status": true
+    },
+    {
+      "id": "2",
+      "Shop_order_id": 1,
+      "Date": "2023-10-02T12:00:00Z",
+      "Action_description": "Đang xử lý đơn hàng",
+      "Action_status": true
+    },
+    {
+      "id": "3",
+      "Shop_order_id": 2,
+      "Date": "2023-10-03T14:00:00Z",
+      "Action_description": "Đơn hàng đã giao",
+      "Action_status": true
+    }
+  ],
+  "Style": [
+    {
+      "id": "1",
+      "name": "Style 1",
+      "createdBy": "Admin",
+      "updatedBy": "Admin",
+      "createdAt": "2025-02-18T00:00:00Z",
+      "updatedAt": "2025-02-18T00:00:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": "2",
+      "name": "Style 2",
+      "createdBy": "User",
+      "updatedBy": "User",
+      "createdAt": "2025-02-18T00:00:00Z",
+      "updatedAt": "2025-02-18T00:00:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": "3",
+      "name": "Style 3",
+      "createdBy": "Admin",
+      "updatedBy": "User",
+      "createdAt": "2025-02-18T00:00:00Z",
+      "updatedAt": "2025-02-18T00:00:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": "d87f",
+      "name": "Thái Duy Đức",
+      "status": false
+    },
+    {
+      "id": "2adb",
+      "name": "Intel Core i9-13900K",
+      "status": true
+    },
+    {
+      "id": "996a",
+      "name": "â",
+      "status": true
+    }
+  ],
+  "Order": [
+    {
+      "id": "1",
+      "Created_by": "admin",
+      "Updated_by": "admin",
+      "Created_at": "2024-02-19T10:00:00",
+      "Updated_at": "2024-02-19T10:30:00",
+      "Deleted": false,
+      "Customer_id": 101,
+      "Employee_id": 201,
+      "Shop_voucher_id": 301,
+      "Address_id": 401,
+      "Confirmation_date": "2024-02-19",
+      "Delivery_start_date": "2024-02-20",
+      "Expected_delivery_date": "2024-02-25",
+      "Full_name": "Nguyễn Văn A",
+      "Note": "Giao hàng giờ hành chính",
+      "Phone_number": "0987654321",
+      "Received_date": null,
+      "Shopping_money": 500000,
+      "Status": false,
+      "Total_money": 550000,
+      "Type": "Online",
+      "Code": "ORD001"
+    },
+    {
+      "id": "2",
+      "Created_by": "admin",
+      "Updated_by": "admin",
+      "Created_at": "2024-02-18T14:00:00",
+      "Updated_at": "2024-02-18T15:00:00",
+      "Deleted": false,
+      "Customer_id": 102,
+      "Employee_id": 202,
+      "Shop_voucher_id": null,
+      "Address_id": 402,
+      "Confirmation_date": "2024-02-18",
+      "Delivery_start_date": "2024-02-19",
+      "Expected_delivery_date": "2024-02-23",
+      "Full_name": "Trần Thị B",
+      "Note": "Kiểm tra hàng trước khi nhận",
+      "Phone_number": "0912345678",
+      "Received_date": "2024-02-23",
+      "Shopping_money": 800000,
+      "Status": true,
+      "Total_money": 800000,
+      "Type": "Offline",
+      "Code": "ORD002"
+    },
+    {
+      "id": "3",
+      "Created_by": "employee",
+      "Updated_by": "employee",
+      "Created_at": "2024-02-17T09:00:00",
+      "Updated_at": "2024-02-17T10:00:00",
+      "Deleted": false,
+      "Customer_id": 103,
+      "Employee_id": 203,
+      "Shop_voucher_id": 303,
+      "Address_id": 403,
+      "Confirmation_date": "2024-02-17",
+      "Delivery_start_date": "2024-02-18",
+      "Expected_delivery_date": "2024-02-22",
+      "Full_name": "Lê Văn C",
+      "Note": "",
+      "Phone_number": "0909123456",
+      "Received_date": null,
+      "Shopping_money": 1200000,
+      "Status": false,
+      "Total_money": 1300000,
+      "Type": "Online",
+      "Code": "ORD003"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "fullName": "Nguyễn Văn A",
+      "dateOfBirth": "1990-05-15",
+      "gender": "Nam",
+      "urlImage": "https://example.com/images/nguyenvana.jpg",
+      "phoneNumber": "0901234567",
+      "password": "hashed_password_1",
+      "status": true,
+      "createdBy": "admin",
+      "updatedBy": "admin",
+      "createdAt": "2024-02-24T10:00:00Z",
+      "updatedAt": "2024-02-24T10:00:00Z",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "fullName": "Trần Thị B",
+      "dateOfBirth": "1995-10-20",
+      "gender": "Nữ",
+      "urlImage": "https://example.com/images/tranthib.jpg",
+      "phoneNumber": "0912345678",
+      "password": "hashed_password_2",
+      "status": true,
+      "createdBy": "admin",
+      "updatedBy": "admin",
+      "createdAt": "2024-02-24T11:00:00Z",
+      "updatedAt": "2024-02-24T11:00:00Z",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "fullName": "Lê Văn C",
+      "dateOfBirth": "1988-07-30",
+      "gender": "Nam",
+      "urlImage": "https://example.com/images/levanc.jpg",
+      "phoneNumber": "0923456789",
+      "password": "hashed_password_3",
+      "status": false,
+      "createdBy": "admin",
+      "updatedBy": "admin",
+      "createdAt": "2024-02-24T12:00:00Z",
+      "updatedAt": "2024-02-24T12:00:00Z",
+      "deleted": true
+    }
+  ],
+  "vouchers": [
+    {
+      "id": 1,
+      "code": "DISCOUNT10",
+      "voucherConstraint": "Min purchase 500K",
+      "startDate": "2024-02-01T00:00:00Z",
+      "endDate": "2024-02-29T23:59:59Z",
+      "urlImage": "https://example.com/voucher1.png",
+      "name": "Giảm 10%",
+      "quantity": 100,
+      "status": true,
+      "type": "percentage",
+      "value": 10,
+      "createdBy": "admin",
+      "updatedBy": "admin",
+      "createdAt": "2024-01-15T08:00:00Z",
+      "updatedAt": "2024-01-20T10:00:00Z",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "code": "SALE50",
+      "voucherConstraint": "Min purchase 1M",
+      "startDate": "2024-02-10T00:00:00Z",
+      "endDate": "2024-03-10T23:59:59Z",
+      "urlImage": "https://example.com/voucher2.png",
+      "name": "Giảm 50K",
+      "quantity": 50,
+      "status": true,
+      "type": "fixed",
+      "value": 50000,
+      "createdBy": "admin",
+      "updatedBy": "admin",
+      "createdAt": "2024-01-18T09:30:00Z",
+      "updatedAt": "2024-01-25T11:00:00Z",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "code": "FREESHIP",
+      "voucherConstraint": "Applies to all orders",
+      "startDate": "2024-01-01T00:00:00Z",
+      "endDate": "2024-12-31T23:59:59Z",
+      "urlImage": "https://example.com/voucher3.png",
+      "name": "Miễn phí vận chuyển",
+      "quantity": 200,
+      "status": true,
+      "type": "shipping",
+      "value": 0,
+      "createdBy": "system",
+      "updatedBy": "system",
+      "createdAt": "2023-12-25T07:00:00Z",
+      "updatedAt": "2024-01-05T09:00:00Z",
+      "deleted": false
+    }
+  ],
+  "Colors":[
+    {
+      "id": 1,
+      "name": "Red",
+      "code": "#FF0000",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:00:00Z",
+      "updated_at": "2024-03-04T10:30:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": 2,
+      "name": "Blue",
+      "code": "#0000FF",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:05:00Z",
+      "updated_at": "2024-03-04T10:35:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": 3,
+      "name": "Green",
+      "code": "#00FF00",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:10:00Z",
+      "updated_at": "2024-03-04T10:40:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": 4,
+      "name": "Black",
+      "code": "#000000",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:15:00Z",
+      "updated_at": "2024-03-04T10:45:00Z",
+      "deleted": false,
+      "status": true
+    },
+    {
+      "id": 5,
+      "name": "White",
+      "code": "#FFFFFF",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:20:00Z",
+      "updated_at": "2024-03-04T10:50:00Z",
+      "deleted": false,
+      "status": false
+    }
+  ],
+  "Materials":[
+    {
+      "id": 1,
+      "name": "Plastic",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:00:00Z",
+      "updated_at": "2024-03-04T10:30:00Z",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "name": "Metal",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:05:00Z",
+      "updated_at": "2024-03-04T10:35:00Z",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "name": "Wood",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:10:00Z",
+      "updated_at": "2024-03-04T10:40:00Z",
+      "deleted": false
+    },
+    {
+      "id": 4,
+      "name": "Glass",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:15:00Z",
+      "updated_at": "2024-03-04T10:45:00Z",
+      "deleted": false
+    },
+    {
+      "id": 5,
+      "name": "Fabric",
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2024-03-04T10:20:00Z",
+      "updated_at": "2024-03-04T10:50:00Z",
+      "deleted": true
+    }
+  ],
+  "Brands":[
+    {
+      "id": 1,
+      "name": "Samsung",
+      "status": true,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-06-01T00:00:00Z",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "name": "Apple",
+      "status": true,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2023-02-01T00:00:00Z",
+      "updated_at": "2023-06-10T00:00:00Z",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "name": "Xiaomi",
+      "status": false,
+      "created_by": "admin",
+      "updated_by": "admin",
+      "created_at": "2023-03-01T00:00:00Z",
+      "updated_at": "2023-07-01T00:00:00Z",
+      "deleted": false
+    }
+  ]
+
+
+}

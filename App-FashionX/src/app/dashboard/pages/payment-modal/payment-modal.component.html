@@ -1,0 +1,360 @@
+<!-- payment-modal.component.html -->
+<div class="payment-modal-overlay">
+  <div class="payment-modal">
+    <div class="payment-modal-header">
+      <h2>Thanh toán</h2>
+      <button class="close-button" (click)="close()">×</button>
+    </div>
+
+    <div class="payment-modal-progress">
+      <div class="progress-step" [class.active]="step >= 1">
+        <div class="step-number">1</div>
+        <div class="step-label">Thông tin</div>
+      </div>
+      <div class="progress-line" [class.active]="step >= 2"></div>
+      <div class="progress-step" [class.active]="step >= 2">
+        <div class="step-number">2</div>
+        <div class="step-label">Địa chỉ</div>
+      </div>
+      <div class="progress-line" [class.active]="step >= 3"></div>
+      <div class="progress-step" [class.active]="step >= 3">
+        <div class="step-number">3</div>
+        <div class="step-label">Thanh toán</div>
+      </div>
+    </div>
+
+    <div class="payment-modal-content">
+      <form [formGroup]="paymentForm">
+        <!-- Step 1: Thông tin khách hàng -->
+        <div
+          class="step-content"
+          *ngIf="step === 1"
+          formGroupName="customerInfo"
+        >
+          <h3>Thông tin khách hàng</h3>
+
+          <div class="form-group">
+            <label for="fullName">Họ và tên</label>
+            <input
+              type="text"
+              id="fullName"
+              formControlName="fullName"
+              placeholder="Nhập họ và tên"
+            />
+            <div
+              class="error-message"
+              *ngIf="
+                paymentForm.get('customerInfo.fullName')?.touched &&
+                paymentForm.get('customerInfo.fullName')?.invalid
+              "
+            >
+              Vui lòng nhập họ và tên
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              placeholder="Nhập email"
+            />
+            <div
+              class="error-message"
+              *ngIf="
+                paymentForm.get('customerInfo.email')?.touched &&
+                paymentForm.get('customerInfo.email')?.invalid
+              "
+            >
+              <span
+                *ngIf="paymentForm.get('customerInfo.email')?.errors?.['required']"
+                >Vui lòng nhập email</span
+              >
+              <span
+                *ngIf="paymentForm.get('customerInfo.email')?.errors?.['email']"
+                >Email không hợp lệ</span
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input
+              type="tel"
+              id="phone"
+              formControlName="phone"
+              placeholder="Nhập số điện thoại"
+            />
+            <div
+              class="error-message"
+              *ngIf="
+                paymentForm.get('customerInfo.phone')?.touched &&
+                paymentForm.get('customerInfo.phone')?.invalid
+              "
+            >
+              <span
+                *ngIf="paymentForm.get('customerInfo.phone')?.errors?.['required']"
+                >Vui lòng nhập số điện thoại</span
+              >
+              <span
+                *ngIf="paymentForm.get('customerInfo.phone')?.errors?.['pattern']"
+                >Số điện thoại phải có 10 chữ số</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Thông tin giao hàng -->
+        <div
+          class="step-content"
+          *ngIf="step === 2"
+          formGroupName="shippingInfo"
+        >
+          <h3>Địa chỉ giao hàng</h3>
+
+          <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input
+              type="text"
+              id="address"
+              formControlName="address"
+              placeholder="Số nhà, tên đường"
+            />
+            <div
+              class="error-message"
+              *ngIf="
+                paymentForm.get('shippingInfo.address')?.touched &&
+                paymentForm.get('shippingInfo.address')?.invalid
+              "
+            >
+              Vui lòng nhập địa chỉ
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="city">Tỉnh/Thành phố</label>
+              <select id="city" formControlName="city">
+                <option value="">Chọn Tỉnh/Thành phố</option>
+                <option value="hanoi">Hà Nội</option>
+                <option value="hcm">TP. Hồ Chí Minh</option>
+                <option value="danang">Đà Nẵng</option>
+                <!-- Thêm các tỉnh thành khác -->
+              </select>
+              <div
+                class="error-message"
+                *ngIf="
+                  paymentForm.get('shippingInfo.city')?.touched &&
+                  paymentForm.get('shippingInfo.city')?.invalid
+                "
+              >
+                Vui lòng chọn Tỉnh/Thành phố
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="district">Quận/Huyện</label>
+              <select id="district" formControlName="district">
+                <option value="">Chọn Quận/Huyện</option>
+                <option value="district1">Quận 1</option>
+                <option value="district2">Quận 2</option>
+                <!-- Thêm các quận huyện khác -->
+              </select>
+              <div
+                class="error-message"
+                *ngIf="
+                  paymentForm.get('shippingInfo.district')?.touched &&
+                  paymentForm.get('shippingInfo.district')?.invalid
+                "
+              >
+                Vui lòng chọn Quận/Huyện
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="ward">Phường/Xã</label>
+            <select id="ward" formControlName="ward">
+              <option value="">Chọn Phường/Xã</option>
+              <option value="ward1">Phường 1</option>
+              <option value="ward2">Phường 2</option>
+              <!-- Thêm các phường xã khác -->
+            </select>
+            <div
+              class="error-message"
+              *ngIf="
+                paymentForm.get('shippingInfo.ward')?.touched &&
+                paymentForm.get('shippingInfo.ward')?.invalid
+              "
+            >
+              Vui lòng chọn Phường/Xã
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Ghi chú (không bắt buộc)</label>
+            <textarea
+              id="notes"
+              formControlName="notes"
+              placeholder="Ghi chú về đơn hàng hoặc giao hàng"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Step 3: Phương thức thanh toán -->
+        <div class="step-content" *ngIf="step === 3">
+          <h3>Phương thức thanh toán</h3>
+
+          <div class="payment-methods">
+            <div
+              class="payment-method"
+              *ngFor="let method of paymentMethods"
+              [class.selected]="selectedPaymentMethod === method.id.toString()"
+              (click)="selectPaymentMethod(method.id.toString())"
+            >
+              <div class="payment-method-icon">
+                <!-- <span class="material-icons">{{ method.icon }}</span> -->
+              </div>
+              <!-- <div class="payment-method-name">{{ method.name }}</div> -->
+            </div>
+          </div>
+
+          <div
+            class="error-message"
+            *ngIf="!selectedPaymentMethod && paymentForm.touched"
+          >
+            Vui lòng chọn phương thức thanh toán
+          </div>
+
+          <!-- Hiển thị thông tin thẻ nếu chọn phương thức Thẻ tín dụng -->
+          <div
+            class="card-details"
+            *ngIf="selectedPaymentMethod === 'credit-card'"
+            formGroupName="paymentInfo"
+          >
+            <h4>Thông tin thẻ</h4>
+
+            <div class="form-group">
+              <label for="cardNumber">Số thẻ</label>
+              <input
+                type="text"
+                id="cardNumber"
+                formControlName="cardNumber"
+                placeholder="XXXX XXXX XXXX XXXX"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="cardName">Tên trên thẻ</label>
+              <input
+                type="text"
+                id="cardName"
+                formControlName="cardName"
+                placeholder="NGUYEN VAN A"
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiryDate">Ngày hết hạn</label>
+                <input
+                  type="text"
+                  id="expiryDate"
+                  formControlName="expiryDate"
+                  placeholder="MM/YY"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input
+                  type="text"
+                  id="cvv"
+                  formControlName="cvv"
+                  placeholder="XXX"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Hiển thị tóm tắt đơn hàng -->
+          <div class="order-summary">
+            <h4>Tóm tắt đơn hàng</h4>
+
+            <div class="summary-items">
+              <div class="summary-item" *ngFor="let item of cart">
+                <div class="item-name">
+                  {{ item.name }} x {{ item.quantity }}
+                </div>
+                <div class="item-price">
+                  {{
+                    item.price * item.quantity
+                      | currency : "VND" : "symbol-narrow" : "1.0-0"
+                  }}
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-total">
+              <div class="summary-row">
+                <div class="summary-label">Tạm tính:</div>
+                <div class="summary-value">
+                  {{
+                    totalAmount | currency : "VND" : "symbol-narrow" : "1.0-0"
+                  }}
+                </div>
+              </div>
+              <div class="summary-row">
+                <div class="summary-label">Phí vận chuyển:</div>
+                <div class="summary-value">
+                  {{
+                    calculateShipping()
+                      | currency : "VND" : "symbol-narrow" : "1.0-0"
+                  }}
+                </div>
+              </div>
+              <div class="summary-row total">
+                <div class="summary-label">Tổng cộng:</div>
+                <div class="summary-value">
+                  {{
+                    calculateTotal()
+                      | currency : "VND" : "symbol-narrow" : "1.0-0"
+                  }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="payment-modal-footer">
+      <button
+        *ngIf="step > 1"
+        class="button button-secondary"
+        (click)="previousStep()"
+      >
+        Quay lại
+      </button>
+
+      <button
+        *ngIf="step < 3"
+        class="button button-primary"
+        (click)="nextStep()"
+      >
+        Tiếp tục
+      </button>
+
+      <button
+        *ngIf="step === 3"
+        class="button button-primary"
+        [disabled]="isProcessing"
+        (click)="submitPayment()"
+      >
+        <span class="spinner" *ngIf="isProcessing"></span>
+        <span *ngIf="!isProcessing">Hoàn tất đơn hàng</span>
+      </button>
+    </div>
+  </div>
+</div>
